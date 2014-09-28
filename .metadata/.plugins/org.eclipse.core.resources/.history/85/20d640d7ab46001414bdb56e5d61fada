@@ -2,14 +2,13 @@ package services;
 
 import java.util.ArrayList;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.apache.catalina.connector.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller
@@ -17,13 +16,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class RutaController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public ResponseEntity<Ruta> obtenerRuta(@PathVariable int id){
-		return new ResponseEntity<Ruta>(new Ruta(id, "poblado", "feb 2", 3), HttpStatus.OK);
+	
+	public Ruta obtenerRuta(@PathVariable int id){
+		return new Ruta(id, "poblado", "feb 2", 3);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-    @ResponseBody
+	@RequestMapping()
 	public ArrayList<Ruta> getRutas(){
 		ArrayList<Ruta> rutas = new ArrayList<Ruta>();
 		

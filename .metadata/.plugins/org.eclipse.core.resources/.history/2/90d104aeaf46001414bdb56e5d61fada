@@ -1,5 +1,6 @@
 package services;
 
+import java.awt.List;
 import java.util.ArrayList;
 
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,8 @@ public class RutaController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
     @ResponseBody
-	public ArrayList<Ruta> getRutas(){
-		ArrayList<Ruta> rutas = new ArrayList<Ruta>();
+	public List<Ruta> getRutas(){
+		List<Ruta> rutas = new ArrayList<Ruta>();
 		
 		rutas.add(new Ruta(1, "poblado", "hoy", 3));
 		rutas.add(new Ruta(2, "envigado", "martes", 2, "llego tarde"));

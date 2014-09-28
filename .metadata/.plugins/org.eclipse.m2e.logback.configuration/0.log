@@ -675,3 +675,117 @@ org.eclipse.core.runtime.CoreException: Launch configuration demo - Application 
 2014-09-27 19:46:02,862 [AppKit Thread] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
 2014-09-27 19:46:02,990 [Worker-54] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/luisponcedeleon/Github/llevame-server/services
 2014-09-27 19:46:02,990 [Worker-54] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -Ppom.xml  -B package
+2014-09-27 19:47:52,888 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:47:52,888 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 19:47:52,889 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 19:47:52,890 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:47:52,890 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 19:49:07,730 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:49:07,731 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 19:49:07,732 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 19:49:07,733 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:49:07,733 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 19:57:56,132 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:57:56,133 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 19:57:56,133 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 19:57:56,135 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:57:56,135 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 19:59:46,034 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:59:46,035 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 19:59:46,035 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 19:59:46,036 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:59:46,037 [Worker-60] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 19:59:53,195 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:59:53,196 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 19:59:53,197 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 19:59:53,198 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 19:59:53,198 [Worker-61] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:01:57,594 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:01:57,595 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:01:57,596 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:01:57,597 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:01:57,597 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:02:30,572 [AppKit Thread] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2014-09-27 20:02:30,677 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/luisponcedeleon/Github/llevame-server/services
+2014-09-27 20:02:30,677 [Worker-63] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -Ppom.xml  -B package
+2014-09-27 20:05:58,741 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:05:58,741 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:05:58,742 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:05:58,743 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:05:58,744 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:06:28,523 [Worker-65] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:06:28,523 [Worker-65] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:06:28,524 [Worker-65] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:06:28,525 [Worker-65] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:06:28,526 [Worker-65] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:07:16,122 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:07:16,122 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:07:16,123 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:07:16,124 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:07:16,124 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:07:39,437 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:07:39,437 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:07:39,438 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:07:39,439 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:07:39,439 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:08:49,309 [Worker-64] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:08:49,309 [Worker-64] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:08:49,310 [Worker-64] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:08:49,311 [Worker-64] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:08:49,311 [Worker-64] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:08:51,344 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:08:51,345 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:08:51,345 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:08:51,347 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:08:51,347 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:09:19,488 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:09:19,488 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:09:19,489 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:09:19,490 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:09:19,490 [Worker-63] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:13:42,339 [Worker-59] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:13:42,340 [Worker-59] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:13:42,340 [Worker-59] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:13:42,342 [Worker-59] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:13:42,342 [Worker-59] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:13:51,690 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:13:51,690 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:13:51,691 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:13:51,692 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:13:51,692 [Worker-62] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:17:27,397 [AppKit Thread] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2014-09-27 20:17:27,495 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/luisponcedeleon/Github/llevame-server/services
+2014-09-27 20:17:27,495 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -Ppom.xml  -B package
+2014-09-27 20:17:42,357 [AppKit Thread] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2014-09-27 20:25:25,459 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/luisponcedeleon/Github/llevame-server/services
+2014-09-27 20:25:25,459 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -Ppom.xml  -B package
+2014-09-27 20:28:14,639 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/luisponcedeleon/Github/llevame-server/services
+2014-09-27 20:28:14,639 [Worker-59] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -Ppom.xml  -B package
+2014-09-27 20:29:33,847 [AppKit Thread] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2014-09-27 20:31:11,915 [Worker-81] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:31:11,916 [Worker-81] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:31:11,917 [Worker-81] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:31:11,933 [Worker-81] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:31:11,933 [Worker-81] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:31:30,721 [Worker-71] INFO  o.e.m.i.launch.MavenLaunchDelegate - /Users/luisponcedeleon/Github/llevame-server/services
+2014-09-27 20:31:30,721 [Worker-71] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -Ppom.xml  -B package
+2014-09-27 20:34:26,497 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:34:26,498 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:34:26,499 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:34:26,500 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:34:26,500 [Worker-76] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:34:32,815 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:34:32,815 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:34:32,816 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:34:32,817 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:34:32,817 [Worker-83] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:34:55,558 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:34:55,559 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:34:55,559 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:34:55,560 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:34:55,560 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
+2014-09-27 20:35:09,301 [Worker-82] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:35:09,301 [Worker-82] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2014-09-27 20:35:09,302 [Worker-82] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2014-09-27 20:35:09,303 [Worker-82] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2014-09-27 20:35:09,303 [Worker-82] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/luisponcedeleon/Github/llevame-server/services/src/test/resources
