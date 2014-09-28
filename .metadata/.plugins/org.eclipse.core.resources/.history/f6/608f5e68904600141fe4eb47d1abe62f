@@ -1,0 +1,40 @@
+import java.text.DateFormat;
+
+
+public class Ruta {
+	private String nombre;
+	private DateFormat fecha;
+	private int capacidad;
+	private int descripcion;
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	
+	public DateFormat getFecha() {
+		return fecha;
+	}
+	public void setFecha(DateFormat fecha) {
+		this.fecha = fecha;
+	}
+	
+	public int getCapacidad() {
+		return capacidad;
+	}
+	public void setCapacidad(int capacidad) {
+		this.capacidad = capacidad;
+	}
+	
+	
+	public int getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(int descripcion) {
+		this.descripcion = descripcion;
+	}
+}
