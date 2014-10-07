@@ -1,4 +1,4 @@
-package services;
+package model;
 
 
 
@@ -9,6 +9,9 @@ public class Ruta {
 	private int capacidad;
 	private String descripcion;
 	
+	public Ruta(){
+		
+	}
 
 	public Ruta(int id, String nombre, String fecha, int capacidad){
 		this.id = id;
