@@ -1,0 +1,20 @@
+package DB;
+
+import java.util.ArrayList;
+
+import javax.swing.tree.RowMapper;
+
+import model.Ruta;
+
+public class RutaDAO {
+	
+	public static ArrayList<Rutas> fetchRutasList(){
+		DataBaseHandler.getInstance().getTemplate().query(sql, args, rowMapper);
+	}
+	
+	
+}
+
+private final class RutasMapper implements RowMapper<Ruta> {
+	
+}

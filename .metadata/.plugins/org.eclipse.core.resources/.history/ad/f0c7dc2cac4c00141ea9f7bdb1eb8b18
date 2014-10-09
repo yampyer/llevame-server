@@ -1,0 +1,23 @@
+package DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.tree.RowMapper;
+
+public class RutaDAO {
+	
+	public static ArrayList<Rutas> fetchRutasList(){
+		DataBaseHandler.getInstance().getTemplate().query(sql, args, rowMapper);
+	}
+	
+	
+}
+
+private static final class ActorMapper implements RowMapper<Ruta> {
+
+    public Ruta mapRow(ResultSet rs, int rowNum) throws SQLException {
+        
+    }        
+}

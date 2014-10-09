@@ -1,0 +1,23 @@
+package DB;
+
+public class DataBaseHandler {
+	private static DataBaseHandler INSTANCE;
+	
+	public final static String sqliteDriver = "org.sqlite.JDBC";
+	
+	private JdbcTemplate
+	
+	private DataBaseHandler(){
+		//establecer conexion
+	}
+	
+	public static DataBaseHandler getInstance(){
+		if(INSTANCE == null){
+			INSTANCE = new DataBaseHandler();
+		}
+		
+		return INSTANCE;
+	}
+	
+	
+}

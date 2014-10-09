@@ -1,0 +1,40 @@
+package DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.tree.RowMapper;
+import javax.swing.tree.TreePath;
+
+import model.Ruta;
+
+public class RutaDAO {
+	
+	//esquema de la BDs
+	public static final String ID = "idRuta";
+	public static final String NOMBRE_RUTA = "nombre";
+	public static final String FECHA_HORA = "fecha";
+	public static final String CAPACIDAD = "capacidad";
+	public static final String DESCRIPCION = "descripcion";
+	
+	public static ArrayList<Rutas> fetchRutasList(){
+		DataBaseHandler.getInstance().getTemplate().query(sql, args, rowMapper);
+	}
+	
+	
+}
+
+final class RutaMapper implements org.springframework.jdbc.core.RowMapper<Ruta> {
+
+	@Override
+	public Ruta mapRow(ResultSet res, int rowNum) throws SQLException {
+		Ruta ruta = new Ruta(res.getInt(RutaDAO.ID), res.getString(RutaDAO.NOMBRE_RUTA),
+				res.getString(RutaDAO.FECHA_HORA), res.getInt(RutaDAO.CAPACIDAD), 
+				res.getString(RutaDAO.DESCRIPCION));
+		return ruta;
+	}
+
+	
+	
+}

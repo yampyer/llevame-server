@@ -1,7 +1,5 @@
 package DB;
 
-import model.Ruta;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 

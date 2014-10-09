@@ -1,5 +1,0 @@
-
-@RestController
-public class RutaController {
-
-}

@@ -37,6 +37,21 @@ public class RutaDAO {
 		
 		return ruta;
 	}
+	
+	public static Ruta fetchRuta(int id){
+		List<Ruta> rs = DataBaseHandler.getInstance().getTemplate()
+			.query("SELECT * FROM " + RutaDAO.TABLE_RUTA
+					+ "WHERE "+ RutaDAO.ID+ " = " + id + ";", 
+					new RutaMapper());
+		
+		return rs.get(0);
+	}
+	
+	public static void eliminarRuta(int id){
+		DataBaseHandler.getInstance().getTemplate()
+			.execute("DELETE FROM " + RutaDAO.TABLE_RUTA 
+					+ " WHERE " + RutaDAO.ID + " = " + id + ";");
+	}
 }
 
 
