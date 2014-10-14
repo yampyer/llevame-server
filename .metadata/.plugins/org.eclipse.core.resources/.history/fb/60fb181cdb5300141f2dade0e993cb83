@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import DB.RutaDAO;
-import DB.PasajerosDAO;
 
 
 @Controller
@@ -57,6 +56,6 @@ public class RutaController {
 	@ResponseBody
 	public void agregarPasajero(@RequestParam(value = "ruta", required = true) Integer ruta,
 			@RequestParam(value = "usuario", required = true) Integer usuario) {
-		PasajerosDAO.crearPasajero(ruta,usuario);
+		
 	}
 }

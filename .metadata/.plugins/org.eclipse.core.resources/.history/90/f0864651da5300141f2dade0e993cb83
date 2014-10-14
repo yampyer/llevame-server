@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import DB.RutaDAO;
-import DB.PasajerosDAO;
 
 
 @Controller
@@ -51,12 +49,4 @@ public class RutaController {
 	public void eliminarRuta(@PathVariable int id){
 		RutaDAO.eliminarRuta(id);
 	} 
-	
-	@RequestMapping(method = RequestMethod.POST, value = "/pasajeros")
-	@ResponseStatus(HttpStatus.CREATED)
-	@ResponseBody
-	public void agregarPasajero(@RequestParam(value = "ruta", required = true) Integer ruta,
-			@RequestParam(value = "usuario", required = true) Integer usuario) {
-		PasajerosDAO.crearPasajero(ruta,usuario);
-	}
 }

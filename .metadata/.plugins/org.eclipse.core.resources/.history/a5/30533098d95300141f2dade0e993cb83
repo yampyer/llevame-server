@@ -40,12 +40,6 @@ public class DataBaseHandler {
 				+ RutaDAO.DESCRIPCION + " TEXT "
 				+ ");");
 		
-		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS " + PasajerosDAO.TABLE_PASAJEROS + " ("
-				+ PasajerosDAO.ID_RUTA + " INTEGER NOT NULL, "
-				+ PasajerosDAO.ID_USUARIO + " INTEGER NOT NULL, PRIMARY KEY (" + PasajerosDAO.ID_RUTA 
-				+ ", " + PasajerosDAO.ID_USUARIO+"));");
-		
-		
 		//TODO: crear el resto de la BDs
 	}
 	
