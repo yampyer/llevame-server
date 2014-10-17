@@ -3,9 +3,11 @@ package services;
 import java.util.List;
 
 import model.Ruta;
+import model.Ubicacion;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import DB.RutaDAO;
 import DB.PasajerosDAO;
+import DB.Ruta_UbicacionDAO;
+import DB.UbicacionDAO;
 
 
 @Controller
@@ -58,5 +62,19 @@ public class RutaController {
 	public void agregarPasajero(@RequestParam(value = "ruta", required = true) Integer ruta,
 			@RequestParam(value = "usuario", required = true) Integer usuario) {
 		PasajerosDAO.crearPasajero(ruta,usuario);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/{id}/ubicaciones")
+	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseBody
+	public List<Ubicacion> IngresarRecorrido(@RequestBody List<Ubicacion> recorrido, 
+												@PathVariable int id){
+		//foreach ubicacion en recorrido
+		for(Ubicacion u : recorrido){
+			u = UbicacionDAO.createUbicacion(u);
+			Ruta_UbicacionDAO.agregarUbicacionARuta(u.getId(), id);
+		}
+		
+		return recorrido;
 	}
 }

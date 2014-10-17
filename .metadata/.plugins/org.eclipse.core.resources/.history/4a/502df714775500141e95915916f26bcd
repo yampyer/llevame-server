@@ -1,0 +1,11 @@
+package DB;
+
+public class UbicacionDAO {
+	public static final String TABLE_NAME = "ubicacion";
+	public static final String ID = "idUbicacion";
+	public static final String NOMBRE = "nombre";
+	public static final String LONGITUD = "longitud";
+	public static final String LATITUD = "latitud";
+	
+	
+}

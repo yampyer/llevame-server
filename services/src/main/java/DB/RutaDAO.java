@@ -1,8 +1,14 @@
 package DB;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import model.Ruta;
 
@@ -23,7 +29,7 @@ public class RutaDAO {
 	}
 	
 	public static Ruta createRuta(Ruta ruta){
-		int id = DataBaseHandler.getInstance().getTemplate().update("INSERT INTO "+RutaDAO.TABLE_RUTA
+		final String sql = "INSERT INTO "+RutaDAO.TABLE_RUTA
 				+ " ("+RutaDAO.NOMBRE_RUTA + ", "
 				+ RutaDAO.FECHA_HORA + ", "
 				+ RutaDAO.CAPACIDAD + ", "
@@ -31,10 +37,22 @@ public class RutaDAO {
 				+ ruta.getNombre() + "', '"
 				+ ruta.getFecha() + "', "
 				+ ruta.getCapacidad() + ", '"
-				+ ruta.getDescripcion() + "');");
+				+ ruta.getDescripcion() + "');";
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		DataBaseHandler.getInstance().getTemplate().update(new PreparedStatementCreator() {
+			
+			@Override
+			public PreparedStatement createPreparedStatement(Connection c)
+					throws SQLException {
+				return c.prepareStatement(sql);
+			}
+		}, keyHolder);
+		
+		int id = keyHolder.getKey().intValue();
 		
 		ruta.setId(id);
-		
 		return ruta;
 	}
 	

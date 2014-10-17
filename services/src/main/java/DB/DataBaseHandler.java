@@ -32,6 +32,7 @@ public class DataBaseHandler {
 	}
 	
 	private void createTables(){
+		//rutas
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS " + RutaDAO.TABLE_RUTA + " ("
 				+ RutaDAO.ID + " INTEGER PRIMARY KEY NOT NULL, "
 				+ RutaDAO.NOMBRE_RUTA + " TEXT, "
@@ -40,10 +41,27 @@ public class DataBaseHandler {
 				+ RutaDAO.DESCRIPCION + " TEXT "
 				+ ");");
 		
+		//pasajeros (usuarios-rutas)
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS " + PasajerosDAO.TABLE_PASAJEROS + " ("
 				+ PasajerosDAO.ID_RUTA + " INTEGER NOT NULL, "
 				+ PasajerosDAO.ID_USUARIO + " INTEGER NOT NULL, PRIMARY KEY (" + PasajerosDAO.ID_RUTA 
 				+ ", " + PasajerosDAO.ID_USUARIO+"));");
+		
+		//ubicacion
+		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS " + UbicacionDAO.TABLE_UBICACION + " ("
+				+ UbicacionDAO.ID + " INTEGER NOT NULL PRIMARY KEY, "
+				+ UbicacionDAO.NOMBRE + " TEXT, "
+				+ UbicacionDAO.LATITUD + " REAL NOT NULL, "
+				+ UbicacionDAO.LONGITUD + " REAL NOT NULL"
+				+ ");");
+		
+		//Ruta-Ubicacion
+		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+Ruta_UbicacionDAO.TABLE_RUTA_UBICACION+" ("
+				+ Ruta_UbicacionDAO.IDRUTA + " INTEGER NOT NULL, "
+				+ Ruta_UbicacionDAO.IDUBICACION + " INTEGER NOT NULL, "
+				+ "PRIMARY KEY("+Ruta_UbicacionDAO.IDRUTA+", "+Ruta_UbicacionDAO.IDUBICACION+")"
+				+ ");");
+		
 		
 		
 		//TODO: crear el resto de la BDs

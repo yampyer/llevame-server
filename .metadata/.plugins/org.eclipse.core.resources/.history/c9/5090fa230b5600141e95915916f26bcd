@@ -1,0 +1,25 @@
+package DB;
+
+import model.Ubicacion;
+
+public class UbicacionDAO {
+	public static final String TABLE_UBICACION = "ubicacion";
+	public static final String ID = "idUbicacion";
+	public static final String NOMBRE = "nombre";
+	public static final String LONGITUD = "longitud";
+	public static final String LATITUD = "latitud";
+	
+	public static Ubicacion createUbicacion(Ubicacion ubicacion){
+		int id = DataBaseHandler.getInstance().getTemplate().update("INSERT INTO "+TABLE_UBICACION 
+			+ "("+NOMBRE+", "+LONGITUD+", "+LATITUD+") VALUES("
+			+ "'"+ubicacion.getNombre() + "', "
+			+ ubicacion.getLongitud() + ", "
+			+ ubicacion.getLatitud()  
+			+ ");");
+		
+		ubicacion.setId(id);
+		return ubicacion;
+	}
+	
+	
+}

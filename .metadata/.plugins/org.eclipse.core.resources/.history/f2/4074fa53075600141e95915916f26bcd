@@ -1,0 +1,9 @@
+package DB;
+
+public class Ruta_UbicacionDAO {
+	public static final String TABLE_RUTA_UBICACION = "ruta-ubicacion";
+	public static final String IDRUTA = "ruta";
+	public static final String IDUBICACION = "ubicacion";
+	
+	
+}
