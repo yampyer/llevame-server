@@ -1,10 +1,13 @@
 package model;
 
+
 public class Usuario {
 
+	private int id;
 	private String username;
 	private String password;
 	private int puntos;
+	
 	
 	public Usuario(String username, String password){
 		this.username = username;
@@ -12,7 +15,8 @@ public class Usuario {
 		puntos = 0;
 	}
 	
-	public Usuario(String username, String password, int puntos){
+	public Usuario(int id, String username, String password, int puntos){
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.puntos = puntos;
@@ -36,4 +40,13 @@ public class Usuario {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 }

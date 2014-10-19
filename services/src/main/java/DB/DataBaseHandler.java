@@ -38,14 +38,21 @@ public class DataBaseHandler {
 				+ RutaDAO.NOMBRE_RUTA + " TEXT, "
 				+ RutaDAO.FECHA_HORA + " DATETIME, "
 				+ RutaDAO.CAPACIDAD + " INT, "
-				+ RutaDAO.DESCRIPCION + " TEXT "
+				+ RutaDAO.DESCRIPCION + " TEXT, "
+				+ RutaDAO.CONDUCTOR + " INTEGER NOT NULL "
+						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
+				+ RutaDAO.VEHICULO + " INTEGER NOT NULL "
+						+ "REFERENCES "+VehiculoDAO.TABLE_VEHICULO+"("+VehiculoDAO.ID+")"
 				+ ");");
 		
 		//pasajeros (usuarios-rutas)
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS " + PasajerosDAO.TABLE_PASAJEROS + " ("
-				+ PasajerosDAO.ID_RUTA + " INTEGER NOT NULL, "
-				+ PasajerosDAO.ID_USUARIO + " INTEGER NOT NULL, PRIMARY KEY (" + PasajerosDAO.ID_RUTA 
-				+ ", " + PasajerosDAO.ID_USUARIO+"));");
+				+ PasajerosDAO.ID_RUTA + " INTEGER NOT NULL "
+						+ "REFERENCES "+RutaDAO.TABLE_RUTA+"("+RutaDAO.ID+"), "
+				+ PasajerosDAO.ID_USUARIO + " INTEGER NOT NULL "
+						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
+				+ "PRIMARY KEY (" + PasajerosDAO.ID_RUTA+ ", " + PasajerosDAO.ID_USUARIO+")"
+				+ ");");
 		
 		//ubicacion
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS " + UbicacionDAO.TABLE_UBICACION + " ("
@@ -57,12 +64,29 @@ public class DataBaseHandler {
 		
 		//Ruta-Ubicacion
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+Ruta_UbicacionDAO.TABLE_RUTA_UBICACION+" ("
-				+ Ruta_UbicacionDAO.IDRUTA + " INTEGER NOT NULL, "
-				+ Ruta_UbicacionDAO.IDUBICACION + " INTEGER NOT NULL, "
+				+ Ruta_UbicacionDAO.IDRUTA + " INTEGER NOT NULL "
+						+ "REFERENCES "+RutaDAO.TABLE_RUTA+"("+RutaDAO.ID+"), "
+				+ Ruta_UbicacionDAO.IDUBICACION + " INTEGER NOT NULL "
+						+ "REFERENCES "+UbicacionDAO.TABLE_UBICACION+"("+UbicacionDAO.ID+"), "
 				+ "PRIMARY KEY("+Ruta_UbicacionDAO.IDRUTA+", "+Ruta_UbicacionDAO.IDUBICACION+")"
 				+ ");");
 		
+		//vehiculos
+		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+VehiculoDAO.TABLE_VEHICULO+" ("
+				+ VehiculoDAO.ID + " INTEGER NOT NULL, "
+				+ VehiculoDAO.PLACA + " TEXT NOT NULL, "
+				+ VehiculoDAO.OWNER + " INTEGER NOT NULL "
+						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
+				+ "PRIMARY KEY("+VehiculoDAO.ID+", "+VehiculoDAO.OWNER+")"
+				+ ");");
 		
+		//usuarios
+		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+UsuarioDAO.TABLE_USUARIO+" ("
+				+ UsuarioDAO.ID + " INTEGER NOT NULL PRIMARY KEY, "
+				+ UsuarioDAO.USERNAME + " TEXT NOT NULL, "
+				+ UsuarioDAO.PASSWORD + " TEXT NOT NULL,"
+				+ UsuarioDAO.PUNTOS + " INTEGER "
+				+ ");");
 		
 		//TODO: crear el resto de la BDs
 	}

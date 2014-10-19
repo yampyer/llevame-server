@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 
 
 public class Ruta {
@@ -8,7 +10,11 @@ public class Ruta {
 	private String fecha;
 	private int capacidad;
 	private String descripcion;
-	private int vehiculo; //id del vehiculo
+	
+	private String placa;
+	private List<Ubicacion> recorrido;
+	private int conductor; //id del conductor
+	private List<Usuario> pasajeros;
 	
 	public Ruta(){
 		
@@ -77,5 +83,39 @@ public class Ruta {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public List<Ubicacion> getRecorrido() {
+		return recorrido;
+	}
+
+	public void setRecorrido(List<Ubicacion> recorrido) {
+		this.recorrido = recorrido;
+	}
+
+	public int getConductor() {
+		return conductor;
+	}
+
+	public void setConductor(int idConductor) {
+		this.conductor = idConductor;
+	}
+
+	public List<Usuario> getPasajeros() {
+		return pasajeros;
+	}
+
+	public void setPasajeros(List<Usuario> pasajeros) {
+		this.pasajeros = pasajeros;
+	}
+	
+	
 	
 }

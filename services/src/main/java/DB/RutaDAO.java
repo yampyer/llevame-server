@@ -22,18 +22,26 @@ public class RutaDAO {
 	public static final String CAPACIDAD = "capacidad";
 	public static final String DESCRIPCION = "descripcion";
 	
+	public static final String CONDUCTOR = "conductor";
+	public static final String VEHICULO = "vehiculo";
+	
 	public static List<Ruta> fetchRutasList(){
 		return DataBaseHandler.getInstance().getTemplate()
 				.query("SELECT * FROM "+ RutaDAO.TABLE_RUTA + ";",
-						new RutaMapper());
+						new SimpleRutaMapper());
 	}
 	
 	public static Ruta createRuta(Ruta ruta){
-		final String sql = "INSERT INTO "+RutaDAO.TABLE_RUTA
+		String esquemaRuta = "INSERT INTO "+RutaDAO.TABLE_RUTA
 				+ " ("+RutaDAO.NOMBRE_RUTA + ", "
 				+ RutaDAO.FECHA_HORA + ", "
 				+ RutaDAO.CAPACIDAD + ", "
-				+ RutaDAO.DESCRIPCION + ") VALUES ('"
+				+ RutaDAO.DESCRIPCION;
+		
+		
+		
+		final String sql = esquemaRuta
+				+ ") VALUES ('"
 				+ ruta.getNombre() + "', '"
 				+ ruta.getFecha() + "', "
 				+ ruta.getCapacidad() + ", '"
@@ -57,10 +65,15 @@ public class RutaDAO {
 	}
 	
 	public static Ruta fetchRuta(int id){
+		String rutaSql = "SELECT * FROM " + RutaDAO.TABLE_RUTA
+						+ " WHERE "+ RutaDAO.ID+ " = " + id;
+		
+		String sql = "SELECT * "
+				+ "FROM "+VehiculoDAO.TABLE_VEHICULO+" JOIN (" + rutaSql + ") "
+						+ "ON " + VEHICULO + " == " + VehiculoDAO.ID; 
+		
 		List<Ruta> rs = DataBaseHandler.getInstance().getTemplate()
-			.query("SELECT * FROM " + RutaDAO.TABLE_RUTA
-					+ "WHERE "+ RutaDAO.ID+ " = " + id + ";", 
-					new RutaMapper());
+			.query(sql,new DetailedRutaMapper());
 		
 		return rs.get(0);
 	}
@@ -74,13 +87,29 @@ public class RutaDAO {
 
 
 
-final class RutaMapper implements org.springframework.jdbc.core.RowMapper<Ruta> {
+final class SimpleRutaMapper implements org.springframework.jdbc.core.RowMapper<Ruta> {
 
 	@Override
 	public Ruta mapRow(ResultSet res, int rowNum) throws SQLException {
 		Ruta ruta = new Ruta(res.getInt(RutaDAO.ID), res.getString(RutaDAO.NOMBRE_RUTA),
 				res.getString(RutaDAO.FECHA_HORA), res.getInt(RutaDAO.CAPACIDAD), 
 				res.getString(RutaDAO.DESCRIPCION));
+		
+		return ruta;
+	}
+}
+
+//SimpleRutaMaper + placa + idConductor
+final class DetailedRutaMapper implements org.springframework.jdbc.core.RowMapper<Ruta> {
+
+	@Override
+	public Ruta mapRow(ResultSet res, int rowNum) throws SQLException {
+		Ruta ruta = new Ruta(res.getInt(RutaDAO.ID), res.getString(RutaDAO.NOMBRE_RUTA),
+				res.getString(RutaDAO.FECHA_HORA), res.getInt(RutaDAO.CAPACIDAD), 
+				res.getString(RutaDAO.DESCRIPCION));
+		
+		ruta.setConductor(res.getInt(RutaDAO.CONDUCTOR));
+		ruta.setPlaca(res.getString(VehiculoDAO.PLACA));
 		return ruta;
 	}
 }
