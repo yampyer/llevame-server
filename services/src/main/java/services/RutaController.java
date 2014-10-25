@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Ruta;
 import model.Ubicacion;
+import model.Usuario;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,14 @@ public class RutaController {
 	
 	
 	//pasajeros----------------------------------------------
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/pasajeros")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<Usuario> getPasajeros(@RequestParam(value = "ruta", required = true) Integer ruta) {
+		return PasajerosDAO.fetchPasajeros(ruta);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/pasajeros")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody

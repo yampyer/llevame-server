@@ -17,7 +17,13 @@ import DB.VehiculoDAO;
 @Controller
 @RequestMapping("/vehiculos")
 public class VehiculoController {
-
+	
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+	public List<Vehiculo> getVehiculos(){
+		return VehiculoDAO.fetchListaVehiculos();
+	}
 	
 	@RequestMapping(method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -26,12 +32,5 @@ public class VehiculoController {
 		v = VehiculoDAO.CrearVehiculo(v);
 		
 		return v;
-	}
-	
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-	public List<Vehiculo> getVehiculos(){
-		return VehiculoDAO.fetchListaVehiculos();
 	}
 }

@@ -1,5 +1,9 @@
 package DB;
 
+import java.util.List;
+
+import model.Usuario;
+
 public class PasajerosDAO {
 
 	public static final String TABLE_PASAJEROS = "pasajeros";
@@ -14,6 +18,15 @@ public class PasajerosDAO {
 				+ idUsuario
 				+" );"
 				);
+	}
+	
+	public static List<Usuario> fetchPasajeros(int idRuta){
+		String sql = "SELECT * "
+				+ "FROM " + TABLE_PASAJEROS + " JOIN " + UsuarioDAO.TABLE_USUARIO 
+					+ " USING ("+ID_USUARIO+")"
+				+ " WHERE " + ID_RUTA + " = " + idRuta;
+		
+		return DataBaseHandler.getInstance().getTemplate().query(sql, new UsuarioMapper());
 	}
 	
 }
