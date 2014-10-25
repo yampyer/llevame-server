@@ -41,8 +41,8 @@ public class DataBaseHandler {
 				+ RutaDAO.DESCRIPCION + " TEXT, "
 				+ RutaDAO.CONDUCTOR + " INTEGER NOT NULL "
 						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
-				+ RutaDAO.VEHICULO + " INTEGER NOT NULL "
-						+ "REFERENCES "+VehiculoDAO.TABLE_VEHICULO+"("+VehiculoDAO.ID+")"
+				+ RutaDAO.VEHICULO + " TEXT NOT NULL "
+						+ "REFERENCES "+VehiculoDAO.TABLE_VEHICULO+"("+VehiculoDAO.PLACA+")"
 				+ ");");
 		
 		//pasajeros (usuarios-rutas)
@@ -73,11 +73,10 @@ public class DataBaseHandler {
 		
 		//vehiculos
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+VehiculoDAO.TABLE_VEHICULO+" ("
-				+ VehiculoDAO.ID + " INTEGER NOT NULL, "
 				+ VehiculoDAO.PLACA + " TEXT NOT NULL, "
 				+ VehiculoDAO.OWNER + " INTEGER NOT NULL "
 						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
-				+ "PRIMARY KEY("+VehiculoDAO.ID+", "+VehiculoDAO.OWNER+")"
+				+ "PRIMARY KEY("+VehiculoDAO.PLACA+", "+VehiculoDAO.OWNER+")"
 				+ ");");
 		
 		//usuarios

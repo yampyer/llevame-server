@@ -7,7 +7,6 @@ import model.Ubicacion;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import DB.RutaDAO;
 import DB.PasajerosDAO;
+import DB.RutaDAO;
 import DB.Ruta_UbicacionDAO;
 import DB.UbicacionDAO;
 
@@ -26,6 +25,7 @@ import DB.UbicacionDAO;
 @RequestMapping("/rutas")
 public class RutaController {
 
+	//ruta----------------------------------------------
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -56,6 +56,8 @@ public class RutaController {
 		RutaDAO.eliminarRuta(id);
 	} 
 	
+	
+	//pasajeros----------------------------------------------
 	@RequestMapping(method = RequestMethod.POST, value = "/pasajeros")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
@@ -64,6 +66,7 @@ public class RutaController {
 		PasajerosDAO.crearPasajero(ruta,usuario);
 	}
 	
+	//ubicacion----------------------------------------------
 	@RequestMapping(method = RequestMethod.POST, value = "/{id}/ubicaciones")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody

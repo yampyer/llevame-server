@@ -3,10 +3,13 @@ package model;
 public class Vehiculo {
 
 	private String placa;
-	private Usuario owner;
+	private int owner; //id del dueño
 	
+	public Vehiculo(){
+		
+	}
 	
-	public Vehiculo(String placa, Usuario owner){
+	public Vehiculo(String placa, int owner){
 		this.placa = placa;
 		this.owner = owner;
 	}
@@ -17,10 +20,10 @@ public class Vehiculo {
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
-	public Usuario getUser() {
+	public int getOwner() {
 		return owner;
 	}
-	public void setUser(Usuario owner) {
+	public void setOwner(int owner) {
 		this.owner = owner;
 	}
 	

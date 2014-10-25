@@ -15,6 +15,8 @@ import DB.DataBaseHandler;
 public class Application {
 
     public static void main(String[] args) {
+    	DataBaseHandler.getInstance();
+    	
     	if(args.length>1){
     		
     	} else {

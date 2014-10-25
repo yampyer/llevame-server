@@ -23,7 +23,7 @@ public class RutaDAO {
 	public static final String DESCRIPCION = "descripcion";
 	
 	public static final String CONDUCTOR = "conductor";
-	public static final String VEHICULO = "vehiculo";
+	public static final String VEHICULO = "placaVehiculo";
 	
 	public static List<Ruta> fetchRutasList(){
 		return DataBaseHandler.getInstance().getTemplate()
@@ -36,7 +36,9 @@ public class RutaDAO {
 				+ " ("+RutaDAO.NOMBRE_RUTA + ", "
 				+ RutaDAO.FECHA_HORA + ", "
 				+ RutaDAO.CAPACIDAD + ", "
-				+ RutaDAO.DESCRIPCION;
+				+ RutaDAO.DESCRIPCION + ", "
+				+ RutaDAO.CONDUCTOR + ", "
+				+ RutaDAO.VEHICULO;
 		
 		
 		
@@ -45,7 +47,9 @@ public class RutaDAO {
 				+ ruta.getNombre() + "', '"
 				+ ruta.getFecha() + "', "
 				+ ruta.getCapacidad() + ", '"
-				+ ruta.getDescripcion() + "');";
+				+ ruta.getDescripcion() + "', "
+				+ ruta.getConductor()+", "
+				+ "'"+ruta.getPlaca()+"');";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
@@ -68,12 +72,12 @@ public class RutaDAO {
 		String rutaSql = "SELECT * FROM " + RutaDAO.TABLE_RUTA
 						+ " WHERE "+ RutaDAO.ID+ " = " + id;
 		
-		String sql = "SELECT * "
-				+ "FROM "+VehiculoDAO.TABLE_VEHICULO+" JOIN (" + rutaSql + ") "
-						+ "ON " + VEHICULO + " == " + VehiculoDAO.ID; 
-		
 		List<Ruta> rs = DataBaseHandler.getInstance().getTemplate()
-			.query(sql,new DetailedRutaMapper());
+			.query(rutaSql,new DetailedRutaMapper());
+		
+		if(rs.isEmpty()){
+			System.err.println("ERROR: Nothing found in sql: " + rutaSql);
+		}
 		
 		return rs.get(0);
 	}
@@ -109,7 +113,7 @@ final class DetailedRutaMapper implements org.springframework.jdbc.core.RowMappe
 				res.getString(RutaDAO.DESCRIPCION));
 		
 		ruta.setConductor(res.getInt(RutaDAO.CONDUCTOR));
-		ruta.setPlaca(res.getString(VehiculoDAO.PLACA));
+		ruta.setPlaca(res.getString(RutaDAO.VEHICULO));
 		return ruta;
 	}
 }

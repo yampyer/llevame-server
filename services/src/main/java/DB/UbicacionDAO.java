@@ -13,7 +13,7 @@ import model.Ubicacion;
 public class UbicacionDAO {
 	public static final String TABLE_UBICACION = "ubicacion";
 	public static final String ID = "idUbicacion";
-	public static final String NOMBRE = "nombre";
+	public static final String NOMBRE = "titulo";
 	public static final String LONGITUD = "longitud";
 	public static final String LATITUD = "latitud";
 	
