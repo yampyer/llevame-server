@@ -87,6 +87,15 @@ public class DataBaseHandler {
 				+ UsuarioDAO.PUNTOS + " INTEGER "
 				+ ");");
 		
+		//Eventos
+		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+EventoDAO.TABLA_EVENTOS+" ("
+				+ EventoDAO.ID + " INTEGER NOT NULL PRIMARY KEY, "
+				+ EventoDAO.MENSAJE + " TEXT NOT NULL, "
+				+ EventoDAO.ESTADO + " INT NOT NULL, "
+				+ EventoDAO.ID_USUARIO + " INT NOT NULL "
+						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+")"
+				+ ");");
+		
 		//TODO: crear el resto de la BDs
 	}
 	
