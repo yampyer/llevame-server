@@ -91,7 +91,7 @@ public class DataBaseHandler {
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+EventoDAO.TABLA_EVENTOS+" ("
 				+ EventoDAO.ID + " INTEGER NOT NULL PRIMARY KEY, "
 				+ EventoDAO.MENSAJE + " TEXT NOT NULL, "
-				+ EventoDAO.ESTADO + " INT NOT NULL, "
+				+ EventoDAO.ESTADO + " INT NOT NULL, " //1->TRUE 0->FALSE _->NULL
 				+ EventoDAO.ID_USUARIO + " INT NOT NULL "
 						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+")"
 				+ ");");

@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.RowMapper;
+
 import model.Evento;
 import model.Invitacion;
 import model.Notificacion;
@@ -21,6 +23,29 @@ public class EventoDAO {
 				.query("SELECT * FROM "+ EventoDAO.TABLA_EVENTOS + " "
 						+ "WHERE "+ID_USUARIO+" = "+id+";",
 						new SimpleEventoMapper());
+	}
+	
+	public static void cambiarEstado(int id, boolean aceptado) throws Exception{
+		if(!esInvitacion(id)){
+			throw new Exception("evento con id:"+id+" no es una invitacion");
+		} else {
+			int estado = (aceptado)? 1 : 0;
+			DataBaseHandler.getInstance().getTemplate()
+				.update("UPDATE "+TABLA_EVENTOS+" SET "+ESTADO+" = "+estado+" WHERE "+ID+" = "+id);
+		}
+	}
+	
+	public static boolean esInvitacion(int id){
+		Boolean b = getEstado(id);
+		
+		return (b!=null);
+	}
+	
+	
+	public static boolean getEstado(int id){
+		return DataBaseHandler.getInstance().getTemplate()
+			.query("SELECT "+ESTADO+" FROM "+TABLA_EVENTOS+" WHERE "+ID+"="+id,
+					new BooleanMaper()).get(0);
 	}
 }
 
@@ -46,3 +71,18 @@ final class SimpleEventoMapper implements org.springframework.jdbc.core.RowMappe
 		return evento;
 	}
 }
+
+final class BooleanMaper implements org.springframework.jdbc.core.RowMapper<Boolean> {
+
+	@Override
+	public Boolean mapRow(ResultSet res, int rowNum) throws SQLException {
+		int estado = res.getInt(EventoDAO.ESTADO);
+		if (estado!=1 && estado!=0){
+			return null;
+		} else {
+			return (estado==1);//0->false	1->true
+		}
+	}
+}
+
+
