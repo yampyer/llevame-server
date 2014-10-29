@@ -29,4 +29,7 @@ public class PasajerosDAO {
 		return DataBaseHandler.getInstance().getTemplate().query(sql, new UsuarioMapper());
 	}
 	
+	public static int fetchNumberPasajeros(int idRuta){
+		return fetchPasajeros(idRuta).size();
+	}
 }

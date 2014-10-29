@@ -15,6 +15,8 @@ public class EventoDAO {
 	public static String MENSAJE = "mensaje";
 	public static String ESTADO = "aceptado";
 	public static String ID_USUARIO = "idUsuario";
+	public static String ENUM = "enum"; //tipo de invitacion
+	public static String ID_REF = "idRef"; //objeto al que hace referencia a la invitacion
 	
 	public static List<Evento> fetchListaEventos(int id){
 		return DataBaseHandler.getInstance().getTemplate()
@@ -67,7 +69,7 @@ final class SimpleEventoMapper implements org.springframework.jdbc.core.RowMappe
 			boolean b = (estado==1);//0->false	1->true
 			evento = new Invitacion(res.getInt(EventoDAO.ID), 
 					res.getString(EventoDAO.MENSAJE), res.getInt(EventoDAO.ID_USUARIO), 
-					b);
+					b, res.getInt(EventoDAO.ENUM), res.getInt(EventoDAO.ID_REF));
 		}
 		
 		

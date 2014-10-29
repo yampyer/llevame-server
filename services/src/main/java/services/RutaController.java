@@ -57,6 +57,12 @@ public class RutaController {
 		RutaDAO.eliminarRuta(id);
 	} 
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/pasajero/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<Ruta> listaRutasPasajeros(@PathVariable int id){
+		return RutaDAO.fetchRutasListPasajero(id);
+	}
 	
 	//pasajeros----------------------------------------------
 	
@@ -71,8 +77,17 @@ public class RutaController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public void agregarPasajero(@RequestParam(value = "ruta", required = true) Integer ruta,
-			@RequestParam(value = "usuario", required = true) Integer usuario) {
-		PasajerosDAO.crearPasajero(ruta,usuario);
+			@RequestParam(value = "usuario", required = true) Integer usuario) throws Throwable {
+		int capacidadMax = RutaDAO.fetchRuta(ruta).getCapacidad();
+		
+		int cuposDisp = capacidadMax - PasajerosDAO.fetchNumberPasajeros(ruta);
+		
+		if(cuposDisp <= 0){
+			//error, no hay cupos
+			throw new Throwable("No hay mas cupos disponibles");
+		} else {
+			PasajerosDAO.crearPasajero(ruta,usuario);
+		}
 	}
 	
 	//ubicacion----------------------------------------------

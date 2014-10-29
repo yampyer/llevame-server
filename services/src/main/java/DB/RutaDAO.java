@@ -31,6 +31,15 @@ public class RutaDAO {
 						new SimpleRutaMapper());
 	}
 	
+	public static List<Ruta> fetchRutasListPasajero(int idUsr){
+		return DataBaseHandler.getInstance().getTemplate()
+				.query("SELECT * FROM "+ TABLE_RUTA 
+							+ " JOIN "+PasajerosDAO.TABLE_PASAJEROS+" USING ("+ID+")"
+							+ " WHERE "
+							+ PasajerosDAO.TABLE_PASAJEROS+"."+PasajerosDAO.ID_USUARIO+" = "+idUsr+";",
+						new SimpleRutaMapper());
+	}
+	
 	public static Ruta createRuta(Ruta ruta){
 		String esquemaRuta = "INSERT INTO "+RutaDAO.TABLE_RUTA
 				+ " ("+RutaDAO.NOMBRE_RUTA + ", "

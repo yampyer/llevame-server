@@ -93,7 +93,9 @@ public class DataBaseHandler {
 				+ EventoDAO.MENSAJE + " TEXT NOT NULL, "
 				+ EventoDAO.ESTADO + " INT NOT NULL, " //1->TRUE 0->FALSE _->NULL
 				+ EventoDAO.ID_USUARIO + " INT NOT NULL "
-						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+")"
+						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
+				+ EventoDAO.ENUM + " INT, "//ver Handlers.TipoInvitacion
+				+ EventoDAO.ID_REF + " INT"
 				+ ");");
 		
 		//TODO: crear el resto de la BDs
