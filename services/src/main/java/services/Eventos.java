@@ -24,5 +24,9 @@ public class Eventos {
 		}
 	}
 	
-	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void EliminarEvento(@PathVariable int id){
+		EventoDAO.eliminarEvento(id);
+	}
 }

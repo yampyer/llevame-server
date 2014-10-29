@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.jdbc.core.RowMapper;
-
 import model.Evento;
 import model.Invitacion;
 import model.Notificacion;
@@ -33,6 +31,11 @@ public class EventoDAO {
 			DataBaseHandler.getInstance().getTemplate()
 				.update("UPDATE "+TABLA_EVENTOS+" SET "+ESTADO+" = "+estado+" WHERE "+ID+" = "+id);
 		}
+	}
+	
+	public static void eliminarEvento(int id){
+		DataBaseHandler.getInstance().getTemplate()
+			.execute("DELETE FROM "+TABLA_EVENTOS+" WHERE "+ID+" = "+id);
 	}
 	
 	public static boolean esInvitacion(int id){
