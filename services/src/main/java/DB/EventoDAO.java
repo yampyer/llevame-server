@@ -1,5 +1,7 @@
 package DB;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -7,6 +9,10 @@ import java.util.List;
 import model.Evento;
 import model.Invitacion;
 import model.Notificacion;
+
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 public class EventoDAO {
 
@@ -17,6 +23,45 @@ public class EventoDAO {
 	public static String ID_USUARIO = "idUsuario";
 	public static String ENUM = "enum"; //tipo de invitacion
 	public static String ID_REF = "idRef"; //objeto al que hace referencia a la invitacion
+	
+	public static Evento crearEvento(Invitacion inv){
+		String esquemaEvento = "INSERT INTO "+TABLA_EVENTOS
+				+" ("+MENSAJE+", "
+				+ ESTADO+", "
+				+ ID_USUARIO+", "
+				+ ENUM+", "
+				+ ID_REF;
+		
+		int aceptado = inv.isAceptado()? 1 : ((inv.getTipo()==null)?  -1 : 0);
+		final String sql = esquemaEvento
+				+") VALUES ('"
+				+ inv.getMensaje()+"', "
+				+ aceptado+", "
+				+ inv.getIdUsuario()+", "
+				+ inv.getTipo()+", "
+				+ inv.getIdRef()+");";
+				
+			
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+			
+		DataBaseHandler.getInstance().getTemplate().update(new PreparedStatementCreator() {
+				
+			@Override
+			public PreparedStatement createPreparedStatement(Connection c)
+					throws SQLException {
+				return c.prepareStatement(sql);
+			}
+		}, keyHolder);
+			
+		int id = keyHolder.getKey().intValue();
+		
+		inv.setId(id);
+		
+		return inv;
+		
+	}
+	
+	
 	
 	public static List<Evento> fetchListaEventos(int id){
 		return DataBaseHandler.getInstance().getTemplate()
