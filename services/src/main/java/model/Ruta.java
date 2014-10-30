@@ -16,6 +16,8 @@ public class Ruta {
 	private int conductor; //id del conductor
 	private List<Usuario> pasajeros;
 	
+	private boolean estado;
+	
 	public Ruta(){
 		
 	}
@@ -114,6 +116,14 @@ public class Ruta {
 
 	public void setPasajeros(List<Usuario> pasajeros) {
 		this.pasajeros = pasajeros;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 	
 	

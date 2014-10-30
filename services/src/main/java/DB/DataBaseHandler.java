@@ -42,8 +42,8 @@ public class DataBaseHandler {
 				+ RutaDAO.CONDUCTOR + " INTEGER NOT NULL "
 						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
 				+ RutaDAO.VEHICULO + " TEXT NOT NULL "
-						+ "REFERENCES "+VehiculoDAO.TABLE_VEHICULO+"("+VehiculoDAO.PLACA+")"
-				+ ");");
+						+ "REFERENCES "+VehiculoDAO.TABLE_VEHICULO+"("+VehiculoDAO.PLACA+"),"
+				+ RutaDAO.ESTADO + " BOOLEAN NOT NULL);");
 		
 		//pasajeros (usuarios-rutas)
 		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS " + PasajerosDAO.TABLE_PASAJEROS + " ("

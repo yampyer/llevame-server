@@ -25,10 +25,12 @@ public class RutaDAO {
 	public static final String CONDUCTOR = "conductor";
 	public static final String VEHICULO = "placaVehiculo";
 	
+	public static final String ESTADO = "estado";//0->pendiente 1->en progreso
+	
 	public static List<Ruta> fetchRutasList(){
 		return DataBaseHandler.getInstance().getTemplate()
 				.query("SELECT * FROM "+ RutaDAO.TABLE_RUTA + ";",
-						new SimpleRutaMapper());
+						new DetailedRutaMapper());
 	}
 	
 	public static List<Ruta> fetchRutasListPasajero(int idUsr){
@@ -37,7 +39,7 @@ public class RutaDAO {
 							+ " JOIN "+PasajerosDAO.TABLE_PASAJEROS+" USING ("+ID+")"
 							+ " WHERE "
 							+ PasajerosDAO.TABLE_PASAJEROS+"."+PasajerosDAO.ID_USUARIO+" = "+idUsr+";",
-						new SimpleRutaMapper());
+						new DetailedRutaMapper());
 	}
 	
 	public static List<Ruta> fetchRutasListConductor(int idUsr){
@@ -54,7 +56,8 @@ public class RutaDAO {
 				+ RutaDAO.CAPACIDAD + ", "
 				+ RutaDAO.DESCRIPCION + ", "
 				+ RutaDAO.CONDUCTOR + ", "
-				+ RutaDAO.VEHICULO;
+				+ RutaDAO.VEHICULO + ", "
+				+ RutaDAO.ESTADO;
 		
 		
 		
@@ -65,7 +68,8 @@ public class RutaDAO {
 				+ ruta.getCapacidad() + ", '"
 				+ ruta.getDescripcion() + "', "
 				+ ruta.getConductor()+", "
-				+ "'"+ruta.getPlaca()+"');";
+				+ "'"+ruta.getPlaca()+"',"
+				+ "0);";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
@@ -81,6 +85,8 @@ public class RutaDAO {
 		int id = keyHolder.getKey().intValue();
 		
 		ruta.setId(id);
+		
+		ruta.setEstado(false);
 		return ruta;
 	}
 	
@@ -115,6 +121,7 @@ final class SimpleRutaMapper implements org.springframework.jdbc.core.RowMapper<
 				res.getString(RutaDAO.FECHA_HORA), res.getInt(RutaDAO.CAPACIDAD), 
 				res.getString(RutaDAO.DESCRIPCION));
 		
+		
 		return ruta;
 	}
 }
@@ -130,6 +137,7 @@ final class DetailedRutaMapper implements org.springframework.jdbc.core.RowMappe
 		
 		ruta.setConductor(res.getInt(RutaDAO.CONDUCTOR));
 		ruta.setPlaca(res.getString(RutaDAO.VEHICULO));
+		ruta.setEstado(res.getBoolean(RutaDAO.ESTADO));
 		return ruta;
 	}
 }
