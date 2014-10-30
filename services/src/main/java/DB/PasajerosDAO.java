@@ -20,6 +20,11 @@ public class PasajerosDAO {
 				);
 	}
 	
+	public static void borrarPasajero(int idRuta, int idUsuario){
+		DataBaseHandler.getInstance().getTemplate().execute("DELETE FROM "+TABLE_PASAJEROS+
+				" WHERE "+ID_RUTA+" = "+idRuta+" AND "+ID_USUARIO+" = "+idUsuario);
+	}
+	
 	public static List<Usuario> fetchPasajeros(int idRuta){
 		String sql = "SELECT * "
 				+ "FROM " + TABLE_PASAJEROS + " JOIN " + UsuarioDAO.TABLE_USUARIO 
