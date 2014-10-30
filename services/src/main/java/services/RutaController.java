@@ -64,6 +64,13 @@ public class RutaController {
 		return RutaDAO.fetchRutasListPasajero(id);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/conductor/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<Ruta> listaRutasConductor(@PathVariable int id){
+		return RutaDAO.fetchRutasListConductor(id);
+	}
+	
 	//pasajeros----------------------------------------------
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/pasajeros")
