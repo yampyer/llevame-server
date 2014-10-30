@@ -71,6 +71,16 @@ public class RutaController {
 		return RutaDAO.fetchRutasListConductor(id);
 	}
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void cambiarEstadoRuta(@PathVariable int id,
+			@RequestParam(value = "estado", required = true) boolean estado){
+		
+		RutaDAO.cambiarEstadoRuta(estado, id);
+		
+	} 
+	
 	//pasajeros----------------------------------------------
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/pasajeros")

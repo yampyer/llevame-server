@@ -109,6 +109,14 @@ public class RutaDAO {
 			.execute("DELETE FROM " + RutaDAO.TABLE_RUTA 
 					+ " WHERE " + RutaDAO.ID + " = " + id + ";");
 	}
+	
+	public static void cambiarEstadoRuta(boolean estado, int idRuta){
+		int estadoNum = estado? 1 : 0;//true->1 false->0
+		
+		DataBaseHandler.getInstance().getTemplate()
+			.update("UPDATE "+TABLE_RUTA+" SET "+RutaDAO.ESTADO+" = "+estadoNum+""
+					+ " WHERE "+RutaDAO.ID+" = "+idRuta);
+	}
 }
 
 
