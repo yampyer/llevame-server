@@ -9,13 +9,15 @@ public class Invitacion extends Evento {
 
 	public Invitacion(){
 		super();
+		esNotificacion=false;
 	}
 	
 	public Invitacion(int id, String msj, int idUsr, boolean aceptado, int tipo, int idRef){
-		super(id, msj, idUsr);
+		super(id, msj, idUsr, false);
 		this.aceptado = aceptado;
 		this.setTipo(tipo);
 		this.setIdRef(idRef);
+		setEsNotificacion(false);
 	}
 	
 	public boolean isAceptado() {

@@ -46,7 +46,7 @@ public class RutaDAO {
 		return DataBaseHandler.getInstance().getTemplate()
 				.query("SELECT * FROM "+ TABLE_RUTA + " WHERE "
 						+ CONDUCTOR + " = "+idUsr,
-						new SimpleRutaMapper());
+						new DetailedRutaMapper());
 	}
 	
 	public static Ruta createRuta(Ruta ruta){

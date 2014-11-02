@@ -31,7 +31,7 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}/eventos")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<Evento> getListaElemento(@PathVariable int id){
+	public List<Evento> getListaEvento(@PathVariable int id){
 		return EventoDAO.fetchListaEventos(id);
 	}
 }
