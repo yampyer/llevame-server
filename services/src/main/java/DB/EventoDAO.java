@@ -23,6 +23,7 @@ public class EventoDAO {
 	public static String ID_USUARIO = "idUsuario";
 	public static String ENUM = "enum"; //tipo de invitacion
 	public static String ID_REF = "idRef"; //objeto al que hace referencia a la invitacion
+	public static String ID_REF2 = "idRef2";
 	
 	public static Evento crearEvento(Invitacion inv){
 		String esquemaEvento = "INSERT INTO "+TABLA_EVENTOS
@@ -30,7 +31,8 @@ public class EventoDAO {
 				+ ESTADO+", "
 				+ ID_USUARIO+", "
 				+ ENUM+", "
-				+ ID_REF;
+				+ ID_REF+", "
+				+ ID_REF2;
 		
 		int aceptado = inv.isAceptado()? 1 : ((inv.getTipo()==null)?  -1 : 0);
 		final String sql = esquemaEvento
@@ -39,7 +41,9 @@ public class EventoDAO {
 				+ aceptado+", "
 				+ inv.getIdUsuario()+", "
 				+ inv.getTipo()+", "
-				+ inv.getIdRef()+");";
+				+ inv.getIdRef()+", "
+				+ inv.getIdRef2()
+				+");";
 				
 			
 		KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -107,14 +111,15 @@ final class SimpleEventoMapper implements org.springframework.jdbc.core.RowMappe
 		int estado = res.getInt(EventoDAO.ESTADO);
 //		System.out.println(estado);
 		Evento evento;
-		if (estado!=1 && estado!=0){
+		if (estado!=1 && estado!=0){//notificacion
 			evento = new Notificacion(res.getInt(EventoDAO.ID), 
 					res.getString(EventoDAO.MENSAJE), res.getInt(EventoDAO.ID_USUARIO));
 		} else {
-			boolean b = (estado==1);//0->false	1->true
+			boolean b = (estado==1);//invitacion	0->false	1->true
 			evento = new Invitacion(res.getInt(EventoDAO.ID), 
 					res.getString(EventoDAO.MENSAJE), res.getInt(EventoDAO.ID_USUARIO), 
-					b, res.getInt(EventoDAO.ENUM), res.getInt(EventoDAO.ID_REF));
+					b, res.getInt(EventoDAO.ENUM), res.getInt(EventoDAO.ID_REF), 
+					res.getInt(EventoDAO.ID_REF2));
 		}
 		
 		
