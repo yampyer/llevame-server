@@ -2,13 +2,15 @@ package DB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
+import model.Ubicacion;
 
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-
-import model.Ubicacion;
 
 public class UbicacionDAO {
 	public static final String TABLE_UBICACION = "ubicacion";
@@ -42,5 +44,28 @@ public class UbicacionDAO {
 		return ubicacion;
 	}
 	
-	
+	public static List<Ubicacion> getRecorridoRuta(int idRuta){
+		return DataBaseHandler.getInstance().getTemplate()
+				.query("SELECT * FROM "+ Ruta_UbicacionDAO.TABLE_RUTA_UBICACION 
+						+ " JOIN " + UbicacionDAO.TABLE_UBICACION 
+							+" USING ("+Ruta_UbicacionDAO.IDUBICACION+")"
+							+ " WHERE "
+							+ Ruta_UbicacionDAO.IDRUTA + " = "+idRuta+";",
+						new UbicacionMapper());
+		
+	}
+}
+
+final class UbicacionMapper implements org.springframework.jdbc.core.RowMapper<Ubicacion> {
+
+	@Override
+	public Ubicacion mapRow(ResultSet res, int rowNum) throws SQLException {
+		Ubicacion u = new Ubicacion();
+		u.setId(res.getInt(UbicacionDAO.ID));
+		u.setNombre(res.getString(UbicacionDAO.NOMBRE));
+		u.setLatitud(res.getDouble(UbicacionDAO.LATITUD));
+		u.setLongitud(res.getDouble(UbicacionDAO.LONGITUD));
+		
+		return u;
+	}
 }

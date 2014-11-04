@@ -2,6 +2,10 @@ package model;
 
 public class Invitacion extends Evento {
 
+	public static final int RUTA = 0;
+	public static final int USUARIO = 1;
+	public static final int COMUNIDAD = 2;
+	
 	//PENDIENTE = false		ACEPTADO = true
 	private boolean aceptado;
 	private Integer tipo;

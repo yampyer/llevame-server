@@ -130,4 +130,11 @@ public class RutaController {
 		
 		return recorrido;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/ubicaciones")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<Ubicacion> obtenerRecorrido(@PathVariable int id){
+		return UbicacionDAO.getRecorridoRuta(id);
+	}
 }

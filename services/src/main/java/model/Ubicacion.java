@@ -3,8 +3,8 @@ package model;
 public class Ubicacion {
 	private int id;
 	private String nombre;
-	private float latitud;
-	private float longitud;
+	private Double latitud;
+	private Double longitud;
 	
 	
 	
@@ -20,16 +20,16 @@ public class Ubicacion {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public float getLatitud() {
+	public Double getLatitud() {
 		return latitud;
 	}
-	public void setLatitud(float latitud) {
+	public void setLatitud(Double latitud) {
 		this.latitud = latitud;
 	}
-	public float getLongitud() {
+	public Double getLongitud() {
 		return longitud;
 	}
-	public void setLongitud(float longitud) {
+	public void setLongitud(Double longitud) {
 		this.longitud = longitud;
 	}
 }
