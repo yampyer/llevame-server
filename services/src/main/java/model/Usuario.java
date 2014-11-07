@@ -8,6 +8,9 @@ public class Usuario {
 	private String password;
 	private int puntos;
 	
+	public Usuario(){
+		
+	}
 	
 	public Usuario(String username, String password){
 		this.username = username;
