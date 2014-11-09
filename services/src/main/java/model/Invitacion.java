@@ -11,6 +11,7 @@ public class Invitacion extends Evento {
 	private Integer tipo;
 	private Integer idRef; //id de quien envia la invitacion
 	private Integer idRef2; //id de la ruta en caso de invitacion a ruta
+	private Integer idRef3; //id de la ubicacion en que se recoge al pasajero
 
 	public Invitacion(){
 		super();
@@ -20,19 +21,20 @@ public class Invitacion extends Evento {
 	public Invitacion(int id, String msj, int idUsr, boolean aceptado, int tipo, Integer idRef){
 		super(id, msj, idUsr, false);
 		this.aceptado = aceptado;
-		this.setTipo(tipo);
-		this.setIdRef(idRef);
+		this.tipo = tipo;
+		this.idRef = idRef;
 		setEsNotificacion(false);
 	}
 	
 	public Invitacion(int id, String msj, int idUsr, boolean aceptado, int tipo,
-			Integer idRef, Integer idRef2){
+			Integer idRef, Integer idRef2, Integer idRef3){
 		
 		super(id, msj, idUsr, false);
 		this.aceptado = aceptado;
-		this.setTipo(tipo);
-		this.setIdRef(idRef);
-		this.setIdRef2(idRef2);
+		this.tipo = tipo;
+		this.idRef = idRef;
+		this.idRef2 = idRef2;
+		this.setIdRef3(idRef3);
 		setEsNotificacion(false);
 	}
 	
@@ -66,6 +68,14 @@ public class Invitacion extends Evento {
 
 	public void setIdRef2(Integer idRef2) {
 		this.idRef2 = idRef2;
+	}
+
+	public Integer getIdRef3() {
+		return idRef3;
+	}
+
+	public void setIdRef3(Integer idRef3) {
+		this.idRef3 = idRef3;
 	}
 	
 }

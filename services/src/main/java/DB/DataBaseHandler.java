@@ -51,6 +51,8 @@ public class DataBaseHandler {
 						+ "REFERENCES "+RutaDAO.TABLE_RUTA+"("+RutaDAO.ID+"), "
 				+ PasajerosDAO.ID_USUARIO + " INTEGER NOT NULL "
 						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
+				+ PasajerosDAO.ID_UBICACION + " INTEGER NOT NULL "
+						+ "REFERENCES "+UbicacionDAO.TABLE_UBICACION+"("+UbicacionDAO.ID+"), "
 				+ "PRIMARY KEY (" + PasajerosDAO.ID_RUTA+ ", " + PasajerosDAO.ID_USUARIO+")"
 				+ ");");
 		

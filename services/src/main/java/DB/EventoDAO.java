@@ -24,6 +24,7 @@ public class EventoDAO {
 	public static String ENUM = "enum"; //tipo de invitacion
 	public static String ID_REF = "idRef"; //objeto al que hace referencia a la invitacion
 	public static String ID_REF2 = "idRef2";
+	public static String ID_REF3 = "idRef3";
 	
 	public static Evento crearEvento(Invitacion inv){
 		String esquemaEvento = "INSERT INTO "+TABLA_EVENTOS
@@ -32,7 +33,8 @@ public class EventoDAO {
 				+ ID_USUARIO+", "
 				+ ENUM+", "
 				+ ID_REF+", "
-				+ ID_REF2;
+				+ ID_REF2+", "
+				+ ID_REF3;
 		
 		int aceptado = inv.isAceptado()? 1 : ((inv.getTipo()==null)?  -1 : 0);
 		final String sql = esquemaEvento
@@ -42,7 +44,8 @@ public class EventoDAO {
 				+ inv.getIdUsuario()+", "
 				+ inv.getTipo()+", "
 				+ inv.getIdRef()+", "
-				+ inv.getIdRef2()
+				+ inv.getIdRef2()+", "
+				+ inv.getIdRef3()
 				+");";
 				
 			
@@ -119,7 +122,7 @@ final class SimpleEventoMapper implements org.springframework.jdbc.core.RowMappe
 			evento = new Invitacion(res.getInt(EventoDAO.ID), 
 					res.getString(EventoDAO.MENSAJE), res.getInt(EventoDAO.ID_USUARIO), 
 					b, res.getInt(EventoDAO.ENUM), res.getInt(EventoDAO.ID_REF), 
-					res.getInt(EventoDAO.ID_REF2));
+					res.getInt(EventoDAO.ID_REF2), res.getInt(EventoDAO.ID_REF3));
 		}
 		
 		

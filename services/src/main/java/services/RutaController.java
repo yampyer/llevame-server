@@ -94,7 +94,8 @@ public class RutaController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public void agregarPasajero(@RequestParam(value = "ruta", required = true) Integer ruta,
-			@RequestParam(value = "usuario", required = true) Integer usuario) throws Throwable {
+			@RequestParam(value = "usuario", required = true) Integer usuario,
+			@RequestParam(value = "ubicacion", required = true) Integer ubicacion) throws Throwable {
 		int capacidadMax = RutaDAO.fetchRuta(ruta).getCapacidad();
 		
 		int cuposDisp = capacidadMax - PasajerosDAO.fetchNumberPasajeros(ruta);
@@ -103,7 +104,7 @@ public class RutaController {
 			//error, no hay cupos
 			throw new Throwable("No hay mas cupos disponibles");
 		} else {
-			PasajerosDAO.crearPasajero(ruta,usuario);
+			PasajerosDAO.crearPasajero(ruta,usuario,ubicacion);
 		}
 	}
 	
