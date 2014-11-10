@@ -97,7 +97,9 @@ public class DataBaseHandler {
 				+ EventoDAO.ID_USUARIO + " INT NOT NULL "
 						+ "REFERENCES "+UsuarioDAO.TABLE_USUARIO+"("+UsuarioDAO.ID+"), "
 				+ EventoDAO.ENUM + " INT, "//ver Handlers.TipoInvitacion
-				+ EventoDAO.ID_REF + " INT"
+				+ EventoDAO.ID_REF + " INT, "
+				+ EventoDAO.ID_REF2 + " INT, "
+				+ EventoDAO.ID_REF3 + " INT"
 				+ ");");
 		
 		//TODO: crear el resto de la BDs

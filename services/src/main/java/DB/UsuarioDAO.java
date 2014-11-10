@@ -63,6 +63,16 @@ public class UsuarioDAO {
 		
 		return rs.get(0);
 	}
+	
+	public static Usuario fetchUsuario(String username){
+		String sql = "SELECT * FROM " + UsuarioDAO.TABLE_USUARIO
+				+ " WHERE "+ UsuarioDAO.USERNAME+ " = '" + username + "'";
+		
+		List<Usuario> rs = DataBaseHandler.getInstance().getTemplate()
+			.query(sql,new UsuarioMapper());
+		
+		return rs.get(0);
+	}
 }
 
 final class UsuarioMapper implements org.springframework.jdbc.core.RowMapper<Usuario>  {

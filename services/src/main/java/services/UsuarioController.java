@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -41,5 +42,12 @@ public class UsuarioController {
 	@ResponseBody
 	public List<Evento> getListaEvento(@PathVariable int id){
 		return EventoDAO.fetchListaEventos(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Usuario getUsuarioByNombre(@RequestParam(value = "usr", required=true) String username){
+		return UsuarioDAO.fetchUsuario(username);
 	}
 }
