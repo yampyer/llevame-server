@@ -6,12 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import model.Usuario;
+
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-
-import model.Ruta;
-import model.Usuario;
 
 public class UsuarioDAO {
 	public static final String TABLE_USUARIO = "usuario";
@@ -76,6 +75,20 @@ public class UsuarioDAO {
 		} 
 		
 		return rs.get(0);
+	}
+
+	public static List<Usuario> fetchUsuariosLike(String username) {
+		String sql = "SELECT * FROM " + UsuarioDAO.TABLE_USUARIO
+				+ " WHERE "+ UsuarioDAO.USERNAME+ " LIKE '%" + username + "%'";
+		
+		List<Usuario> rs = DataBaseHandler.getInstance().getTemplate()
+			.query(sql,new UsuarioMapper());
+		
+		if(rs.size()==0){
+			return null;
+		} 
+		
+		return rs;
 	}
 }
 

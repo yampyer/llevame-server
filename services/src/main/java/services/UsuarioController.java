@@ -50,12 +50,11 @@ public class UsuarioController {
 	public Usuario getUsuarioByNombre(@RequestParam(value = "usr", required=true) String username){
 		return UsuarioDAO.fetchUsuario(username);
 	}
-//	
-//	@RequestMapping(method = RequestMethod.GET, value = "/check")
-//	@ResponseStatus(HttpStatus.OK)
-//	@ResponseBody
-//	public Boolean checkUsuarioByNombre(@RequestParam(value = "usr", required=true) String username){
-//		String usr = UsuarioDAO.fetchUsuario(username).getUsername();
-//		return !(usr==null || !usr.equals(username));
-//	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/like")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<Usuario> getUsuarioByNombreLike(@RequestParam(value = "usr", required=true) String username){
+		return UsuarioDAO.fetchUsuariosLike(username);
+	}
 }
