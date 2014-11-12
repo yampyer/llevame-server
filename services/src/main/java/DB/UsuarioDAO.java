@@ -71,6 +71,10 @@ public class UsuarioDAO {
 		List<Usuario> rs = DataBaseHandler.getInstance().getTemplate()
 			.query(sql,new UsuarioMapper());
 		
+		if(rs.size()==0){
+			return null;
+		} 
+		
 		return rs.get(0);
 	}
 }

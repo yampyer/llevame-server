@@ -102,6 +102,13 @@ public class DataBaseHandler {
 				+ EventoDAO.ID_REF3 + " INT"
 				+ ");");
 		
+		//Amigos
+		jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS "+AmigosDAO.TABLE_AMIGOS+" ("
+				+ AmigosDAO.AMIGO1 + " INTEGER NOT NULL, "
+				+ AmigosDAO.AMIGO2 + " INTEGER NOT NULL,"
+				+ " PRIMARY KEY("+AmigosDAO.AMIGO1+", "+AmigosDAO.AMIGO2+")"
+				+ ");");
+		
 		//TODO: crear el resto de la BDs
 	}
 	
