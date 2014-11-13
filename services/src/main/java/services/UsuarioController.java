@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import DB.AmigosDAO;
 import DB.EventoDAO;
 import DB.UsuarioDAO;
 
@@ -56,5 +57,15 @@ public class UsuarioController {
 	@ResponseBody
 	public List<Usuario> getUsuarioByNombreLike(@RequestParam(value = "usr", required=true) String username){
 		return UsuarioDAO.fetchUsuariosLike(username);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/amigos")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public void setAmistad(@RequestParam(value = "usr1", required=true) int usr1,
+						@RequestParam(value = "usr2", required=true) int usr2){
+		
+		AmigosDAO.addAmistad(usr1, usr2);
+		AmigosDAO.addAmistad(usr2, usr1);
 	}
 }
