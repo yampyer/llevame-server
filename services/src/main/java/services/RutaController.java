@@ -30,8 +30,12 @@ public class RutaController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
     @ResponseBody
-	public List<Ruta> getRutas(){
-		return RutaDAO.fetchRutasList();
+	public List<Ruta> getRutas(@RequestParam(value = "usr", required = false) Integer usr){
+		if(usr==null){
+			return RutaDAO.fetchRutasList();
+		} else {
+			return RutaDAO.getRutasAmigos(usr);
+		}
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

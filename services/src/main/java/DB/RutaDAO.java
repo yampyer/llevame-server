@@ -117,6 +117,14 @@ public class RutaDAO {
 			.update("UPDATE "+TABLE_RUTA+" SET "+RutaDAO.ESTADO+" = "+estadoNum+""
 					+ " WHERE "+RutaDAO.ID+" = "+idRuta);
 	}
+
+	public static List<Ruta> getRutasAmigos(int usr) {
+		return DataBaseHandler.getInstance().getTemplate()
+				.query("SELECT * FROM "+ TABLE_RUTA + " JOIN "+ AmigosDAO.TABLE_AMIGOS
+						+ " ON "+CONDUCTOR+" = "+AmigosDAO.AMIGO1
+						+" AND "+AmigosDAO.AMIGO2+" = "+usr,
+						new DetailedRutaMapper());
+	}
 }
 
 
