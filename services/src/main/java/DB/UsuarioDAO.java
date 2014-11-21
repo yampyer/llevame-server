@@ -90,6 +90,28 @@ public class UsuarioDAO {
 		
 		return rs;
 	}
+	
+	public static List<Usuario> fetchUsuariosLike(String username, int usr) {
+		String usuariosLike = "SELECT * FROM " + UsuarioDAO.TABLE_USUARIO
+				+ " WHERE "+ UsuarioDAO.USERNAME+ " LIKE '%" + username + "%'";
+		
+		String amigos = "SELECT * FROM "+AmigosDAO.TABLE_AMIGOS
+				+ " WHERE "+AmigosDAO.AMIGO2+" = "+usr;
+		
+		String sql = "SELECT *"
+					+ " FROM ("+usuariosLike+") AS USUARIOS JOIN ("+amigos+") AS AMIGOS"
+							+ " WHERE USUARIOS."+ID+" != AMIGOS."+AmigosDAO.AMIGO1
+									+ " AND USUARIOS."+ID+" != " +usr;
+		
+		List<Usuario> rs = DataBaseHandler.getInstance().getTemplate()
+			.query(sql,new UsuarioMapper());
+		
+		if(rs.size()==0){
+			return null;
+		} 
+		
+		return rs;
+	}
 }
 
 final class UsuarioMapper implements org.springframework.jdbc.core.RowMapper<Usuario>  {

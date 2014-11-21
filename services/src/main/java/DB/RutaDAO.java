@@ -130,12 +130,6 @@ public class RutaDAO {
 				+ " WHERE "
 				+ PasajerosDAO.TABLE_PASAJEROS+"."+PasajerosDAO.ID_USUARIO+" = "+usr;
 		
-//		return DataBaseHandler.getInstance().getTemplate()
-//				.query("SELECT *"
-//					+ " FROM ("+rutasAmigos+") LEFT OUTER JOIN ("+(rutasComoPasajero)+")"
-//							+ " USING ("+ID+") ",
-//						new DetailedRutaMapper());
-		
 		return DataBaseHandler.getInstance().getTemplate()
 				.query("SELECT *"
 					+ " FROM ("+rutasAmigos+") AS AMIGOS JOIN ("+(rutasComoPasajero)+") AS PASAJEROS"

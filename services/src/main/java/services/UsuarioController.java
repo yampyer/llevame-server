@@ -55,8 +55,14 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET, value = "/like")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<Usuario> getUsuarioByNombreLike(@RequestParam(value = "usr", required=true) String username){
-		return UsuarioDAO.fetchUsuariosLike(username);
+	public List<Usuario> getUsuarioByNombreLike(@RequestParam(value = "usr", required=true) String username,
+			@RequestParam(value = "idUsr", required = false) Integer id){
+		
+		if(id == null){
+			return UsuarioDAO.fetchUsuariosLike(username);
+		} else {
+			return UsuarioDAO.fetchUsuariosLike(username, id); 
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/amigos")
