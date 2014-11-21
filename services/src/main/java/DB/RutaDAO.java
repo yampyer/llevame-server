@@ -119,10 +119,27 @@ public class RutaDAO {
 	}
 
 	public static List<Ruta> getRutasAmigos(int usr) {
+		//TODO: que no traiga rutas en las que soy pasajero
+		
+		String rutasAmigos = "SELECT * FROM "+ TABLE_RUTA + " JOIN "+ AmigosDAO.TABLE_AMIGOS
+				+ " ON "+CONDUCTOR+" = "+AmigosDAO.AMIGO1
+				+" AND "+AmigosDAO.AMIGO2+" = "+usr;
+		
+		String rutasComoPasajero = "SELECT "+ID+" FROM "+ TABLE_RUTA 
+				+ " JOIN "+PasajerosDAO.TABLE_PASAJEROS+" USING ("+ID+")"
+				+ " WHERE "
+				+ PasajerosDAO.TABLE_PASAJEROS+"."+PasajerosDAO.ID_USUARIO+" = "+usr;
+		
+//		return DataBaseHandler.getInstance().getTemplate()
+//				.query("SELECT *"
+//					+ " FROM ("+rutasAmigos+") LEFT OUTER JOIN ("+(rutasComoPasajero)+")"
+//							+ " USING ("+ID+") ",
+//						new DetailedRutaMapper());
+		
 		return DataBaseHandler.getInstance().getTemplate()
-				.query("SELECT * FROM "+ TABLE_RUTA + " JOIN "+ AmigosDAO.TABLE_AMIGOS
-						+ " ON "+CONDUCTOR+" = "+AmigosDAO.AMIGO1
-						+" AND "+AmigosDAO.AMIGO2+" = "+usr,
+				.query("SELECT *"
+					+ " FROM ("+rutasAmigos+") AS AMIGOS JOIN ("+(rutasComoPasajero)+") AS PASAJEROS"
+							+ " WHERE AMIGOS."+ID+" != PASAJEROS."+ID+"",
 						new DetailedRutaMapper());
 	}
 }
