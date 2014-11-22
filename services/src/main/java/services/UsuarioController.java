@@ -69,9 +69,13 @@ public class UsuarioController {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public void setAmistad(@RequestParam(value = "usr1", required=true) int usr1,
-						@RequestParam(value = "usr2", required=true) int usr2){
+						@RequestParam(value = "usr2", required=false) Integer usr2){
 		
-		AmigosDAO.addAmistad(usr1, usr2);
-		AmigosDAO.addAmistad(usr2, usr1);
+		if(usr2!=null){
+			AmigosDAO.addAmistad(usr1, usr2);
+			AmigosDAO.addAmistad(usr2, usr1);
+		} else {
+			AmigosDAO.getAmigos(usr1);
+		}
 	}
 }

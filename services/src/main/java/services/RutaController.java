@@ -2,9 +2,9 @@ package services;
 
 import java.util.List;
 
+import model.Pasajero;
 import model.Ruta;
 import model.Ubicacion;
-import model.Usuario;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -90,7 +90,7 @@ public class RutaController {
 	@RequestMapping(method = RequestMethod.GET, value = "/pasajeros")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<Usuario> getPasajeros(@RequestParam(value = "ruta", required = true) Integer ruta) {
+	public List<Pasajero> getPasajeros(@RequestParam(value = "ruta", required = true) Integer ruta) {
 		return PasajerosDAO.fetchPasajeros(ruta);
 	}
 	

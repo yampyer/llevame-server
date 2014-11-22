@@ -1,5 +1,9 @@
 package DB;
 
+import java.util.List;
+
+import model.Usuario;
+
 public class AmigosDAO {
 	public static final String TABLE_AMIGOS = "amigos";
 	public static final String AMIGO1 = "idAmigo1";
@@ -13,5 +17,10 @@ public class AmigosDAO {
 				+ ");");
 	}
 	
-	
+	public static List<Usuario> getAmigos(int usr){
+		return DataBaseHandler.getInstance().getTemplate()
+				.query("SELECT * FROM "+ TABLE_AMIGOS + " "
+						+ "WHERE "+AMIGO1+" = "+usr+";",
+						new UsuarioMapper());
+	}
 }

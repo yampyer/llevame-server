@@ -1,7 +1,13 @@
 package DB;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import org.omg.PortableServer.ID_UNIQUENESS_POLICY_ID;
+
+import model.Pasajero;
+import model.Ruta;
 import model.Usuario;
 
 public class PasajerosDAO {
@@ -27,16 +33,32 @@ public class PasajerosDAO {
 				" WHERE "+ID_RUTA+" = "+idRuta+" AND "+ID_USUARIO+" = "+idUsuario);
 	}
 	
-	public static List<Usuario> fetchPasajeros(int idRuta){
+	public static List<Pasajero> fetchPasajeros(int idRuta){
 		String sql = "SELECT * "
 				+ "FROM " + TABLE_PASAJEROS + " JOIN " + UsuarioDAO.TABLE_USUARIO 
 					+ " USING ("+ID_USUARIO+")"
 				+ " WHERE " + ID_RUTA + " = " + idRuta;
 		
-		return DataBaseHandler.getInstance().getTemplate().query(sql, new UsuarioMapper());
+		return DataBaseHandler.getInstance().getTemplate().query(sql, new PasajeroMapper());
 	}
 	
 	public static int fetchNumberPasajeros(int idRuta){
 		return fetchPasajeros(idRuta).size();
+	}
+	
+	
+}
+
+final class PasajeroMapper implements org.springframework.jdbc.core.RowMapper<Pasajero> {
+
+	@Override
+	public Pasajero mapRow(ResultSet res, int rowNum) throws SQLException {
+		Pasajero p = new Pasajero(res.getInt(UsuarioDAO.ID), 
+				res.getString(UsuarioDAO.USERNAME), 
+				res.getString(UsuarioDAO.PASSWORD), 
+				res.getInt(UsuarioDAO.PUNTOS),
+				res.getInt(PasajerosDAO.ID_UBICACION));
+		
+		return p;
 	}
 }
