@@ -3,6 +3,7 @@ package services;
 import java.util.List;
 
 import model.Evento;
+import model.Ruta;
 import model.Usuario;
 
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import DB.AmigosDAO;
 import DB.EventoDAO;
+import DB.RutaDAO;
 import DB.UsuarioDAO;
 
 
@@ -36,6 +38,13 @@ public class UsuarioController {
 	@ResponseBody
 	public Usuario getUsuario(@PathVariable int id){
 		return UsuarioDAO.fetchUsuario(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/rutas/pasajero")
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public List<Ruta> listaRutasPasajeros(@PathVariable int id){
+		return RutaDAO.fetchRutasListPasajero(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}/eventos")
