@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import DB.AmigosDAO;
 import DB.EventoDAO;
+import DB.PasajerosDAO;
 import DB.RutaDAO;
 import DB.UsuarioDAO;
 
@@ -38,6 +39,13 @@ public class UsuarioController {
 	@ResponseBody
 	public Usuario getUsuario(@PathVariable int id){
 		return UsuarioDAO.fetchUsuario(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/rutas")
+	@ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+	public List<Ruta> getRutas(@PathVariable int id){
+		return RutaDAO.getRutasAmigos(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}/rutas/pasajero")
