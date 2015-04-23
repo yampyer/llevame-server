@@ -77,11 +77,11 @@ public class RutaController {
 	
 	//pasajeros----------------------------------------------
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/pasajeros")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/pasajeros")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
-	public List<Pasajero> getPasajeros(@RequestParam(value = "ruta", required = true) Integer ruta) {
-		return PasajerosDAO.fetchPasajeros(ruta);
+	public List<Pasajero> getPasajeros(@PathVariable int id) {
+		return PasajerosDAO.fetchPasajeros(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/pasajeros")
