@@ -102,11 +102,10 @@ public class RutaController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE, value = "/pasajeros")
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{ruta}/pasajeros/{usuario}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ResponseBody
-	public void retirarPasajero(@RequestParam(value = "ruta", required = true) Integer ruta,
-			@RequestParam(value = "usuario", required = true) Integer usuario) throws Throwable {
+	public void retirarPasajero(@PathVariable int ruta, @PathVariable int usuario) throws Throwable {
 		
 		PasajerosDAO.borrarPasajero(ruta, usuario);
 	}
