@@ -58,13 +58,6 @@ public class RutaController {
 		RutaDAO.eliminarRuta(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/conductor/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	@ResponseBody
-	public List<Ruta> listaRutasConductor(@PathVariable int id){
-		return RutaDAO.fetchRutasListConductor(id);
-	}
-	
 	@RequestMapping(method = RequestMethod.POST, value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
