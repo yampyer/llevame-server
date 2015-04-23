@@ -77,11 +77,11 @@ public class RutaController {
 		return PasajerosDAO.fetchPasajeros(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/pasajeros")
+	@RequestMapping(method = RequestMethod.POST, value = "/{ruta}/pasajeros/{usuario}")
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
-	public void agregarPasajero(@RequestParam(value = "ruta", required = true) Integer ruta,
-			@RequestParam(value = "usuario", required = true) Integer usuario,
+	public void agregarPasajero(@PathVariable int ruta,
+			@PathVariable int usuario,
 			@RequestParam(value = "ubicacion", required = true) Integer ubicacion) throws Throwable {
 		int capacidadMax = RutaDAO.fetchRuta(ruta).getCapacidad();
 		
