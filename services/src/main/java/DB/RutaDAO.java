@@ -117,6 +117,12 @@ public class RutaDAO {
 			.update("UPDATE "+TABLE_RUTA+" SET "+RutaDAO.ESTADO+" = "+estadoNum+""
 					+ " WHERE "+RutaDAO.ID+" = "+idRuta);
 	}
+	
+	public static void actualizarCapacidadRuta(int cap, int idRuta){
+		DataBaseHandler.getInstance().getTemplate()
+		.update("UPDATE "+TABLE_RUTA+" SET "+RutaDAO.CAPACIDAD+" = "+cap+""
+				+ " WHERE "+RutaDAO.ID+" = "+idRuta);
+	}
 
 	public static List<Ruta> getRutasAmigos(int usr) {
 		

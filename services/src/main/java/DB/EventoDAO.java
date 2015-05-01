@@ -11,6 +11,7 @@ import model.Invitacion;
 import model.Notificacion;
 
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -20,13 +21,24 @@ public class EventoDAO {
 	public static String ID = "idEvento";
 	public static String MENSAJE = "mensaje";
 	public static String ESTADO = "aceptado";
-	public static String ID_USUARIO = "idUsuario";
+	public static String ID_USUARIO = "idUsuario";//id de a quien le llega el evento
 	public static String ENUM = "enum"; //tipo de invitacion
-	public static String ID_REF = "idRef"; //objeto al que hace referencia a la invitacion
-	public static String ID_REF2 = "idRef2";
-	public static String ID_REF3 = "idRef3";
+	public static String ID_REF = "idRef"; //id de quien envia la invitacion
+	public static String ID_REF2 = "idRef2";//id de la ruta en caso de invitacion a ruta
+	public static String ID_REF3 = "idRef3";//id de la ubicacion en que se recoge al pasajero
 	
-	public static Evento crearEvento(Invitacion inv){
+	public static Notificacion crearEvento(Notificacion n){
+		Invitacion inv = new Invitacion(n.getId(), n.getMensaje(), n.getIdUsuario(),
+				false, -1, -1);
+		
+		inv = crearEvento(inv);
+		
+		n.setId(inv.getId());
+		
+		return n;
+	}
+	
+	public static Invitacion crearEvento(Invitacion inv){
 		String esquemaEvento = "INSERT INTO "+TABLA_EVENTOS
 				+" ("+MENSAJE+", "
 				+ ESTADO+", "
@@ -77,6 +89,13 @@ public class EventoDAO {
 						new SimpleEventoMapper());
 	}
 	
+	public static List<Evento> fetchListaInvitacionesPorRuta(int idRuta){
+		return DataBaseHandler.getInstance().getTemplate()
+		.query("SELECT * FROM "+ EventoDAO.TABLA_EVENTOS + " "
+						+ "WHERE "+ID_REF2+" = "+idRuta+";",
+				new SimpleEventoMapper());
+	}
+	
 	public static void cambiarEstado(int id, boolean aceptado) throws Exception{
 		if(!esInvitacion(id)){
 			throw new Exception("evento con id:"+id+" no es una invitacion");
@@ -90,6 +109,21 @@ public class EventoDAO {
 	public static void eliminarEvento(int id){
 		DataBaseHandler.getInstance().getTemplate()
 			.execute("DELETE FROM "+TABLA_EVENTOS+" WHERE "+ID+" = "+id);
+	}
+	
+	/**
+	 * Metodo para eliminar las invitaciones relacionadas con una ruta
+	 * @param idRuta id de la ruta de la cual se elminan las invitaciones
+	 * @return lista de las invitaciones eliminadas
+	 */
+	public static List<Evento> eliminarInvitacionesDeRuta(int idRuta){
+		List<Evento> toDelete = fetchListaInvitacionesPorRuta(idRuta);
+		
+		for(Evento e : toDelete){
+			eliminarEvento(e.getId());
+		}
+		
+		return toDelete;
 	}
 	
 	public static boolean esInvitacion(int id){
@@ -140,6 +174,14 @@ final class BooleanMaper implements org.springframework.jdbc.core.RowMapper<Bool
 		} else {
 			return (estado==1);//0->false	1->true
 		}
+	}
+}
+
+final class idMapper implements org.springframework.jdbc.core.RowMapper<Integer> {
+
+	@Override
+	public Integer mapRow(ResultSet res, int rowNum) throws SQLException {
+		return res.getInt(EventoDAO.ID);
 	}
 }
 

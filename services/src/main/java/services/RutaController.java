@@ -2,6 +2,9 @@ package services;
 
 import java.util.List;
 
+import model.Evento;
+import model.Invitacion;
+import model.Notificacion;
 import model.Pasajero;
 import model.Ruta;
 import model.Ubicacion;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import DB.EventoDAO;
 import DB.PasajerosDAO;
 import DB.RutaDAO;
 import DB.Ruta_UbicacionDAO;
@@ -58,13 +62,13 @@ public class RutaController {
 		RutaDAO.eliminarRuta(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/{id}")
+	@RequestMapping(method = RequestMethod.PATCH, value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public void cambiarEstadoRuta(@PathVariable int id,
-			@RequestParam(value = "estado", required = true) boolean estado){
+			@RequestBody Ruta r){
 		
-		RutaDAO.cambiarEstadoRuta(estado, id);
+		RutaDAO.cambiarEstadoRuta(r.isEstado(), id);
 		
 	} 
 	
@@ -83,15 +87,36 @@ public class RutaController {
 	public void agregarPasajero(@PathVariable int ruta,
 			@PathVariable int usuario,
 			@RequestParam(value = "ubicacion", required = true) Integer ubicacion) throws Throwable {
-		int capacidadMax = RutaDAO.fetchRuta(ruta).getCapacidad();
 		
-		int cuposDisp = capacidadMax - PasajerosDAO.fetchNumberPasajeros(ruta);
+		int cuposDisp = RutaDAO.fetchRuta(ruta).getCapacidad();
 		
 		if(cuposDisp <= 0){
 			//error, no hay cupos
 			throw new Throwable("No hay mas cupos disponibles");
 		} else {
+			//actualizar cupo en ruta
+			cuposDisp--;
 			PasajerosDAO.crearPasajero(ruta,usuario,ubicacion);
+			RutaDAO.actualizarCapacidadRuta(cuposDisp, ruta);
+			if(cuposDisp == 0){
+				
+				//Borrar invitaciones a esta ruta
+				List<Evento> deleted = EventoDAO.eliminarInvitacionesDeRuta(ruta);
+				
+				//Por cada invitacion eliminada enviar notificacion de que se lleno la ruta 
+				for(Evento e : deleted){
+					Invitacion inv = (Invitacion) e;
+					Ruta r = RutaDAO.fetchRuta(inv.getIdRef2());
+					
+					String msj = "La ruta "+ r.getNombre()
+							+" en la que solicitaste un cupo ya no esta disponible";
+					
+					Notificacion notificacion = new Notificacion(-1, msj, inv.getIdRef());
+					
+					EventoDAO.crearEvento(notificacion);
+				}
+				
+			}
 		}
 	}
 	
@@ -99,8 +124,10 @@ public class RutaController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@ResponseBody
 	public void retirarPasajero(@PathVariable int ruta, @PathVariable int usuario) throws Throwable {
+		int cuposDisp = RutaDAO.fetchRuta(ruta).getCapacidad();
 		
 		PasajerosDAO.borrarPasajero(ruta, usuario);
+		RutaDAO.actualizarCapacidadRuta(cuposDisp+1, ruta);
 	}
 	
 	//ubicacion----------------------------------------------

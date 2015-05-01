@@ -4,7 +4,7 @@ public abstract class Evento {
 
 	private String mensaje;
 	private int id;
-	private int idUsuario;
+	private int idUsuario; //id de a quien le llega el evento
 	protected boolean esNotificacion;
 
 	public Evento(){
