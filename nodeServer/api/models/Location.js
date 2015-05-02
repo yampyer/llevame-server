@@ -8,19 +8,19 @@
 module.exports = {
 
   attributes: {
-  	nombre:{
+  	name:{
   		type: 'string',
   		required: true
   	},
-  	latitud: {
+  	latitude: {
   		type: 'float',
   		required: true
   	},
-  	longitud:{
+  	longitude:{
   		type: 'float',
   		required: true
   	},
-  	ruta:{
+  	route:{
   		model: 'route',
   		required: true
   	}

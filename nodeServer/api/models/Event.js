@@ -8,28 +8,29 @@
 module.exports = {
 
   attributes: {
-  	mensaje: {
+  	message: {
   		type: 'string',
   		required: true
   	},
-  	usuarioDestino: {
-  		model: 'user'
+  	targetUser: {
+  		model: 'user',
+  		required: true
   	},
-  	esNotificacion: {
+  	isNotification: {
   		type: 'boolean',
   		required: true
   	},
   	//solo para invitaciones
-  	aceptado: {
+  	acepted: {
   		type: 'boolean'
   	},
-  	tipo: {
+  	type: {
   		type: 'integer',
   	},
-  	creador: {
+  	sender: {
   		model: 'user'
   	},
-  	ruta: {
+  	route: {
   		model: 'route'
   	},
   	pickup: {

@@ -34,7 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,7 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
+  'POST /route/:idR/passengers' : 'RouteController.addPassenger',
+  'DELETE /route/:idR/passengers/:idP' : 'RouteController.removePassenger'
+  
 };

@@ -17,28 +17,28 @@ module.exports = {
   		type: 'string',
   		required: true
   	},
-  	puntos:{
+  	score:{
   		type: 'int',
   		defaultsTo: 0
   	},
   	email:{
   		type: 'email'
   	},
-  	amigos:{
+  	friends:{
   		collection: 'user',
-  		via: 'amigos'
+  		via: 'friends'
   	},
-  	rutasP: {//rutas como pasajero
+  	routesP: {//rutas como pasajero
   		collection: 'route',
-  		via: 'pasajeros'
+  		via: 'passengers'
   	},
-  	rutasC: {//rutas como conductor
+  	routesD: {//rutas como conductor
   		collection: 'route',
-  		via: 'conductor'
+  		via: 'driver'
   	},
-  	notificaciones:{
+  	events:{
   		collection: 'event',
-  		via: 'usuarioDestino'
+  		via: 'targetUser'
   	}
   }
 };

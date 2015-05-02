@@ -8,40 +8,40 @@
 module.exports = {
 
   attributes: {
-  	nombre:{
+  	name:{
   		type: 'string',
   		required: true
   	},
-  	fecha:{
+  	date:{
   		type: 'datetime',
   		required: true
   	},
-  	capacidad:{
+  	capacity:{
   		type: 'integer',
   		required: true
   	}, 
-  	descripcion:{
+  	description:{
   		type: 'text'	
   	},
-  	placa:{
+  	licensePlate:{
   		type: 'string',
   		required: true
   	},
-  	recorrido:{
+  	travelPlan:{
   		collection: 'location',
-  		via: 'ruta'
+  		via: 'route'
   	}, 
-  	conductor: {
+  	driver: {
   		model: 'user',
   		required: true
   	},
-  	estado: {
+  	state: {
   		type: 'boolean',
   		defaultsTo: false
   	},
-  	pasajeros: {
+  	passengers: {
   		collection: 'user',
-  		via: 'rutasP'
+  		via: 'routesP'
   	}
   }
 };
