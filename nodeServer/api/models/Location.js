@@ -1,0 +1,29 @@
+/**
+* Location.js
+*
+* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @docs        :: http://sailsjs.org/#!documentation/models
+*/
+
+module.exports = {
+
+  attributes: {
+  	nombre:{
+  		type: 'string',
+  		required: true
+  	},
+  	latitud: {
+  		type: 'float',
+  		required: true
+  	},
+  	longitud:{
+  		type: 'float',
+  		required: true
+  	},
+  	ruta:{
+  		model: 'route',
+  		required: true
+  	}
+  }
+};
+
