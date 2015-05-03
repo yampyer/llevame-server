@@ -25,8 +25,7 @@ module.exports = {
   		type: 'email'
   	},
   	friends:{
-  		collection: 'user',
-  		via: 'friends'
+  		collection: 'user'
   	},
   	routesP: {//rutas como pasajero
   		collection: 'route',

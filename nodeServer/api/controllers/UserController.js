@@ -21,8 +21,18 @@ module.exports = {
 			.exec(function(err, me){
 				if(err) return res.send(400, err);
 
-				sails.log(me.friends);
+				var vals = me.friends;
 				//TODO: eliminar los resultados que son amigos del usuario
+				for (var j=0;j<vals.length; j++) {
+		      		for(i = ulike.length; i--;){
+	    	      		if (ulike[i].id === vals[j].id) ulike.splice(i, 1);
+			        }
+			    }
+
+			    ulike.forEach(function(u, i, object){
+			    	if (u.id === me.id) ulike.splice(i, 1);
+			    });
+				
 
 				return res.send(ulike);
 			});
