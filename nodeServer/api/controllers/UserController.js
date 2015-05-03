@@ -113,6 +113,37 @@ module.exports = {
 				});
 			});
 		});
+	},
+	friendsRoutes: function(req, res){
+		var userId = req.param('idU');
+
+		var routes = [];
+
+		User.findOne({id : userId})
+		.populate('friends')
+		.populate('routesP')
+		.exec(function(err, u){
+			if(err) return res.send(400, err);
+
+			var friendIDs = [];
+			for(var j=0;j<u.friends.length; j++){
+				friendIDs.push(u.friends[j].id);
+			}
+
+			var routesPIDs = ['-1'];
+			for(var i=0;i<u.routesP.length; i++){
+				routesPIDs.push(u.routesP[i].id);
+			}
+
+			Route.find({ id : { '!' : routesPIDs} }) //rutas que no soy pasajero
+			.populate('driver')
+			.where({ 'driver' : friendIDs }) //rutas de mis amigos
+			.exec(function(err, resRoutes){
+				if(err) return res.send(400, err);
+
+				return res.send(resRoutes);
+			});
+		});
 	}
 
 };
