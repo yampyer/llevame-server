@@ -47,6 +47,8 @@ module.exports.routes = {
   ***************************************************************************/
   'POST /route/:idR/passengers' : 'RouteController.addPassenger',
   'DELETE /route/:idR/passengers/:idP' : 'RouteController.removePassenger',
-  'GET /user/:idUser/like' : 'UserController.likeUsername'
+  'GET /user/:idUser/like' : 'UserController.likeUsername',
+  'POST /user/:idU/friends' : 'UserController.addFriend',
+  'DELETE /route/:idU/friends/:idF' : 'UserController.removeFriend'
 
 };
