@@ -77,11 +77,38 @@ module.exports = {
 			r.save(function(err){
 				if(err) return res.send(400, err);
 
-				Route.findOne({ id : routeId })
+
+
+				Location.find({route : routeId})
 				.populate('passengers')
-				.exec(function(err, r){
+				.exec(function(err, locs){
 					if(err) return res.send(400, err);
-					return res.send(r);
+
+					var found = false;
+					for (var i = locs.length - 1; i >= 0 && !found; i--) {
+						var loc = locs[i];
+						for (var j = loc.passengers.length - 1; j >= 0 && !found; j--) {
+							if(loc.passengers[j].id == userId){
+								found = true;
+								locs[i].passengers.remove(userId);
+
+								locs[i].save(function(err){
+									if(err) return res.send(400, err);
+
+									Route.findOne({ id : routeId })
+									.populate('passengers')
+									.exec(function(err, r){
+										if(err) return res.send(400, err);
+										return res.send(r);
+									});
+								});
+							};
+						};
+					};
+
+					if(!found){ 
+						return res.badRequest('no passenger found in route');
+					}
 				});
 			});
 		});
@@ -113,7 +140,7 @@ module.exports = {
 						for(var k=0;k<loc.passengers.length && !found; k++){
 							var pass = loc.passengers[k];
 
-							if(passenger.id === pass.id){
+							if(passenger.id == pass.id){
 								passenger.pickUp = loc;
 								found = true;
 							}
