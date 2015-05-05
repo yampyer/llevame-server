@@ -9,31 +9,58 @@ module.exports = {
 	addPassenger: function(req, res){
 		var routeId = req.param('idR');
 		var body = req.body;
+		var locationId = req.query.pickUp;
+
+		if(!locationId) 
+			return res.badRequest('pickUp header param missing');
 
 		if(!body.id) 
 			return res.badRequest('mising body param: id');
 
 		var userId = body.id;
 
-		Route.findOne({ id : routeId })
+		Location.findOne({id : locationId})
 		.populate('passengers')
-		.exec(function(err, r){
-			if(err) return res.send(400, err);
-			if(r.capacity == 0) return res.badRequest("route at full capacity");
+		.exec(function(err, loc){
+			if(err) {
+				sails.log(err);
+				return res.badRequest(err);
+			}
 
-			r.passengers.add(userId);
-			r.capacity--;
-			r.save(function(err){
+			if(loc.route != routeId) {
+				return res.badRequest('Location not in this route');
+			}
+
+			Route.findOne({ id : routeId })
+			.populate('passengers')
+			.exec(function(err, r){
 				if(err) return res.send(400, err);
+				if(r.capacity == 0) return res.badRequest("route at full capacity");
 
-				Route.findOne({ id : routeId })
-				.populate('passengers')
-				.exec(function(err, r){
+				r.passengers.add(userId);
+				r.capacity--;
+				r.save(function(err){
 					if(err) return res.send(400, err);
-					return res.send(r);
+
+					loc.passengers.add(userId);
+
+					loc.save(function(err){
+						if(err) return res.badRequest(err);
+
+						Route.findOne({ id : routeId })
+						.populate('passengers')
+						.exec(function(err, r){
+							if(err) return res.send(400, err);
+							return res.send(r);
+						});
+					});
+
+					
 				});
 			});
 		});
+
+		
 	},
 
 	removePassenger: function(req, res){
