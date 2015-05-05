@@ -23,7 +23,10 @@ module.exports = {
   	route:{
   		model: 'route',
   		required: true
-  	}
+  	},
+    passengers:{
+      collection:'user'
+    }
   }
 };
 

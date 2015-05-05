@@ -50,6 +50,7 @@ module.exports.routes = {
   'GET /user/:idUser/like' : 'UserController.likeUsername',
   'POST /user/:idU/friends' : 'UserController.addFriend',
   'DELETE /route/:idU/friends/:idF' : 'UserController.removeFriend',
-  'GET /user/:idU/friends/routes':'UserController.friendsRoutes'
+  'GET /user/:idU/friends/routes':'UserController.friendsRoutes',
+  'GET /route/:idR/passengers' : 'RouteController.getPassengers'
 
 };
