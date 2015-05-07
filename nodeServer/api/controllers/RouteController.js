@@ -33,12 +33,39 @@ module.exports = {
 
 			Route.findOne({ id : routeId })
 			.populate('passengers')
+			.populate('driver')
 			.exec(function(err, r){
 				if(err) return res.send(400, err);
 				if(r.capacity == 0) return res.badRequest("route at full capacity");
 
 				r.passengers.add(userId);
 				r.capacity--;
+
+				if(r.capacity==0){
+					//TODO: Borrar invitaciones del conductor de esta ruta
+					Event.find({targetUser : r.driver.id, route: r.id})
+					.populateAll()
+					.exec(function(err, invitaciones){
+						if(err) return res.send(400, err);
+						var arrInv = [];
+						for (var i = invitaciones.length - 1; i >= 0; i--) {
+							var notificacion = {};
+							notificacion.message = "La ruta " +r.name+" en la que solicitaste un cupo ya no esta disponible";
+							notificacion.targetUser = invitaciones[i].sender;
+							notificacion.isNotification = true;
+
+							Event.create(notificacion)
+							.exec(console.log);
+
+							arrInv.push(invitaciones[i].id);
+						};
+
+						Event.destroy({id : arrInv})
+						.exec(console.log);
+					});
+
+				}
+
 				r.save(function(err){
 					if(err) return res.send(400, err);
 
@@ -54,9 +81,8 @@ module.exports = {
 							return res.send(r);
 						});
 					});
-
-					
 				});
+				
 			});
 		});
 

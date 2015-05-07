@@ -13,7 +13,7 @@ module.exports = {
 		if(!namePattern) return res.badRequest('username header param missing');
 
 		User.find({ username: {'like':'%'+namePattern+'%'}})
-		.exec(function(err, ulike){
+		.exec( function(err, ulike){
 			if(err) return res.send(400, err);
 
 			User.findOne({id: idUser})
