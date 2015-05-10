@@ -119,31 +119,46 @@ module.exports = {
 
 		var routes = [];
 
-		User.findOne({id : userId})
-		.populate('friends')
-		.populate('routesP')
-		.exec(function(err, u){
+		Event.find({})
+		.populate('sender')
+		.where({'sender' : userId, type: 0})//las invitaciones pendientes que tiene el usuario
+		.exec(function(err, events){
 			if(err) return res.send(400, err);
 
-			var friendIDs = [];
-			for(var j=0;j<u.friends.length; j++){
-				friendIDs.push(u.friends[j].id);
-			}
-
-			var routesPIDs = ['-1'];
-			for(var i=0;i<u.routesP.length; i++){
-				routesPIDs.push(u.routesP[i].id);
-			}
-
-			Route.find({ id : { '!' : routesPIDs} }) //rutas que no soy pasajero
-			.populate('driver')
-			.where({ 'driver' : friendIDs }) //rutas de mis amigos
-			.exec(function(err, resRoutes){
+			User.findOne({id : userId})
+			.populate('friends')
+			.populate('routesP')
+			.exec(function(err, u){
 				if(err) return res.send(400, err);
 
-				return res.send(resRoutes);
+				var friendIDs = [];
+				for(var j=0;j<u.friends.length; j++){
+					friendIDs.push(u.friends[j].id);
+				}
+				
+
+				var routesPIDs = ['-1']; //rutas a excluir
+				for(var i=0;i<u.routesP.length; i++){ //en las que soy pasajero
+					routesPIDs.push(u.routesP[i].id);
+				}
+				//en las que tengo una invitacion pendiente
+				for (var i = events.length - 1; i >= 0; i--) {
+					routesPIDs.push(events[i].route);
+				};
+
+				Route.find({ id : { '!' : routesPIDs} }) //eliminar rutas no deseadas
+				.populate('driver')
+				.where({ 'driver' : friendIDs }) //rutas de mis amigos
+				.exec(function(err, resRoutes){
+					if(err) return res.send(400, err);
+
+					return res.send(resRoutes);
+				});
 			});
 		});
+
+
+		
 	}
 
 };

@@ -24,7 +24,7 @@ module.exports = {
   	acepted: {
   		type: 'boolean'
   	},
-  	type: {
+  	type: { //invitacion a una ruta o de amistad 0-ruta, 1-amistad
   		type: 'integer',
   	},
   	sender: {
